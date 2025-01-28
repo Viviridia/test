@@ -541,3 +541,76 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
+
+/obj/item/clothing/suit/roguetown/shirt/dress/gown
+	icon = 'icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	name = "spring gown"
+	desc = "A delicate gown that captures the essence of the season’s renewal."
+	body_parts_covered = CHEST|GROIN|ARMS|VITALS
+	icon_state = "springgown"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
+	boobed = TRUE
+	detail_tag = "_detail"
+	detail_color = "#00713d"
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	var/picked = FALSE
+	colorgrenz = TRUE
+	
+/obj/item/clothing/suit/roguetown/shirt/dress/gown/attack_right(mob/user)
+	if(!ishuman(loc))
+		return
+		
+	var/list/colors = list(
+	"Plum Purple"="#4b2860",
+	"Royal Majenta"="#962e5c",
+	"Pig Pink"="#cc99a2",
+	"Blood Red"="#842127",
+	"Autumn Orange"="#ba602e",
+	"Aurum Yellow"="#b29600",
+	"Grass Green"="#81a959",
+	"Swampweed Green"="#00713d",
+	"Royal Teal"="#3b817a",
+	"Winter Blue"="#45749d",
+	"Sky Blue"="#6ca4bc",
+	"Pure White"="#ffffff",
+	"Royal Black"="#2f352f")
+	var/mob/living/carbon/human/L = loc
+	var/choice = input(L, "Choose a color.", "GOWN COLORPLEX") as anything in colors
+	var/playerchoice = colors[choice]
+	picked = TRUE
+	detail_color = playerchoice
+	update_icon()
+	for(var/obj/item/clothing/V in L.get_equipped_items(FALSE))
+		testing("clothes to color are [V]")
+		if(V.colorgrenz)
+			V.detail_color = playerchoice
+			V.update_icon()
+	L.regenerate_icons()
+	
+/obj/item/clothing/suit/roguetown/shirt/dress/gown/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+		
+/obj/item/clothing/suit/roguetown/shirt/dress/gown/summergown
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "summer gown"
+	desc = "A breezy, flowing gown fit for warm weathers."
+	icon_state = "summergown"
+	boobed = TRUE
+	detail_color = "#e395bb "
+	
+/obj/item/clothing/suit/roguetown/shirt/dress/gown/wintergown
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "winter gown"
+	desc = "A warm, elegant gown adorned with soft fur for cold."
+	icon_state = "wintergown"
+	boobed = TRUE
+	detail_color = "#45749d"
