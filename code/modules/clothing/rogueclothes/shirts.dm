@@ -605,7 +605,7 @@
 	desc = "A breezy, flowing gown fit for warm weathers."
 	icon_state = "summergown"
 	boobed = TRUE
-	detail_color = "#e395bb "
+	detail_color = "#e395bb"
 	
 /obj/item/clothing/suit/roguetown/shirt/dress/gown/wintergown
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
