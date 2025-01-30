@@ -70,7 +70,6 @@
 	else
 		item_to_dye.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 	playsound(src, "bubbles", 50, 1)
-	user.regenerate_icons()
 
 /obj/machinery/dye_bin/attackby(obj/item/I, mob/living/user)
 	if(allow_mobs && istype(I, /obj/item/clothing/head/mob_holder))
