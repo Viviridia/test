@@ -243,7 +243,6 @@
 	else
 		item_to_dye.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 	playsound(src, "bubbles", 50, 1)
-	user.regenerate_icons()
 
 /obj/machinery/simple_dye_bin/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/luxury_dyes))
