@@ -172,7 +172,7 @@
 		if (INTENT_DISARM)
 			handle_marking(target, user, FALSE)
 
-proc/handle_marking(atom/target, mob/living/carbon/user, apply)
+/datum/proc/handle_marking(atom/target, mob/living/carbon/user, apply)
 	if (!istype(target, /mob/living/carbon/human/))
 	{
 		to_chat(user, "The spell fizzles without a valid target.")
@@ -192,14 +192,14 @@ proc/handle_marking(atom/target, mob/living/carbon/user, apply)
 		else
 			remove_vinemark(mob_target, user)
 
-proc/add_vinemark(atom/target, mob/living/carbon/user) // makes vines ignore them essentially
+/datum/proc/add_vinemark(atom/target, mob/living/carbon/user) // makes vines ignore them essentially
 	var/mob/living/mob_target = target
 	mob_target.faction |= "plants"
 	playsound(user, 'sound/magic/ahh2.ogg', 55, TRUE)
 	user.visible_message("[user] marks [mob_target] forehead.")
 	to_chat(target, "<font color='green'> The vines has marked you as one of its own.")
 
-proc/remove_vinemark(atom/target, mob/living/carbon/user)
+/datum/proc/remove_vinemark(atom/target, mob/living/carbon/user)
 	var/mob/living/mob_target = target
 	mob_target.faction -= "plants"
 	playsound(user, 'sound/magic/swap.ogg', 55, TRUE)
