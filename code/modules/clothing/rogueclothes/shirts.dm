@@ -543,13 +543,13 @@
 		INVOKE_ASYNC(src, PROC_REF(get_player_input))
 
 /obj/item/clothing/suit/roguetown/shirt/dress/gown
-	icon = 'icons/roguetown/clothing/shirts.dmi'
-	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
+	icon = 'icons/roguetown/clothing/shirts_gown.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts_gown.dmi'
 	name = "spring gown"
 	desc = "A delicate gown that captures the essence of the season’s renewal."
 	body_parts_covered = CHEST|GROIN|ARMS|VITALS
 	icon_state = "springgown"
-	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts_gown.dmi'
 	boobed = TRUE
 	detail_tag = "_detail"
 	detail_color = "#00713d"
