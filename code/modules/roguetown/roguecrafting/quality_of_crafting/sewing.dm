@@ -454,7 +454,7 @@
 	output = /obj/item/clothing/head/roguetown/courtierhat
 	requirements = list(/obj/item/natural/cloth = 1,
 				/obj/item/natural/fibers = 1,
-				/obj/item/natural/feather = 1))
+				/obj/item/natural/feather = 1)
 	craftdiff = 4
 
 /datum/repeatable_crafting_recipe/sewing/bardhat
@@ -619,7 +619,7 @@
 	craftdiff = 4
 
 /datum/repeatable_crafting_recipe/sewing/weaving/silkchaperone
-	name = "hat (chaperone)
+	name = "hat (chaperone)"
 	output = /obj/item/clothing/head/roguetown/chaperon/greyscale/silk
 	requirements = list(/obj/item/natural/cloth = 1,
 				/obj/item/natural/silk = 2)
