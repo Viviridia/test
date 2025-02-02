@@ -142,7 +142,7 @@
 	body_parts_covered = CHEST|ARM_RIGHT|VITALS
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant/Initialize()
-	color = pick(CLOTHING_MUD_BROWN, CLOTHING_PEAR_YELLOW, CLOTHING_BOG_GREEN, CLOTHING_BARK_BROWN	)
+	color = pick(CLOTHING_MUD_BROWN, CLOTHING_OLD_LEATHER, CLOTHING_SPRING_GREEN, CLOTHING_BARK_BROWN, CLOTHING_CANVAS )
 	..()
 
 /obj/item/clothing/suit/roguetown/shirt/shortshirt
@@ -154,7 +154,7 @@
 	l_sleeve_status = SLEEVE_NORMAL
 
 /obj/item/clothing/suit/roguetown/shirt/shortshirt/random/Initialize()
-	color = pick("#6b5445", "#435436", "#704542", "#79763f")
+	color = RANDOM_PEASANT_DYES
 	..()
 
 /obj/item/clothing/suit/roguetown/shirt/shortshirt/uncolored
@@ -574,8 +574,6 @@
 	icon_state = "wintergown"
 	boobed = TRUE
 	detail_color = "#45749d"
-<<<<<<< Updated upstream
-=======
 
 /obj/item/clothing/suit/roguetown/shirt/dress/gown/fallgown
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
@@ -584,4 +582,3 @@
 	icon_state = "fallgown"
 	boobed = TRUE
 	detail_color = "#8b3f00"
->>>>>>> Stashed changes
