@@ -574,3 +574,14 @@
 	icon_state = "wintergown"
 	boobed = TRUE
 	detail_color = "#45749d"
+<<<<<<< Updated upstream
+=======
+
+/obj/item/clothing/suit/roguetown/shirt/dress/gown/fallgown
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "fall gown"
+	desc = "A long sleeved, solemn gown signifies the season's nearing end."
+	icon_state = "fallgown"
+	boobed = TRUE
+	detail_color = "#8b3f00"
+>>>>>>> Stashed changes

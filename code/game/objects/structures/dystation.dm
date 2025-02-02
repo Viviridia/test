@@ -379,3 +379,12 @@
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "cheap_dyes"
 	w_class = WEIGHT_CLASS_TINY
+<<<<<<< Updated upstream
+=======
+	dropshrink = 0.7
+	sellprice = 3
+/obj/item/cheap_dyes/throw_impact(atom/hit_atom, datum/thrownthing/thrownthing)
+	new /obj/effect/decal/cleanable/dyes(get_turf(src))
+	..()
+	qdel(src)
+>>>>>>> Stashed changes
