@@ -89,7 +89,7 @@
 	reqs = list(/obj/item/grown/log/tree/small = 1,
 				/obj/item/natural/thorn = 3,
 				/obj/item/natural/head/gote = 1)
-	result = /obj/structure/fluff/psycross/crafted/shrine/dendor_saiga
+	result = /obj/structure/fluff/psycross/crafted/shrine/dendor_gote
 	verbage = "consecrate"
 	verbage_tp = "consecrates"
 	craftsound = 'sound/foley/Building-01.ogg'
