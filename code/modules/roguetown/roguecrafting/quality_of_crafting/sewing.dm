@@ -740,7 +740,7 @@
 
 /datum/repeatable_crafting_recipe/sewing/weaving/fallgown
 	name = "gown (fall, silk)"
-	output = /obj/item/clothing/suit/roguetown/shirt/dress/gown/wintergown
+	output = /obj/item/clothing/suit/roguetown/shirt/dress/gown/fallgown
 	requirements = list(/obj/item/natural/fibers = 3,
 				/obj/item/natural/silk = 2,
 				/obj/item/natural/cloth = 2)
