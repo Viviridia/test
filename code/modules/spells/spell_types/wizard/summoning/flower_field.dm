@@ -66,7 +66,7 @@
 		var/obj/structure/flora/field/F = new field_type(center)
 		F.dir = pick(GLOB.cardinals)
 
-	for (var/I in 1 to range)
+	for (var/i in 1 to range)
 		var/list/ring_turfs = list()
 		for (var/turf/T in orange(center, i))
 			if (T.density || isopenspace(T))
@@ -84,7 +84,7 @@
 	return ..()
 
 /obj/effect/proc_holder/spell/invoked/flowerfield/proc/apply_flowerfield(list/affected_turfs, type)
-	if(!LAZYLEN(affected_turfs || !type)
+	if(!LAZYLEN(affected_turfs || !type))
 		return
 	for (var/turf/T as anything in affected_turfs)
 		if (T.density || istype(T, /turf/open/transparent/openspace) || locate(/obj/structure/flora/field) in T.contents)
