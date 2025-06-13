@@ -27,7 +27,6 @@
 			continue
 		total_value += incoming_attunements[attunement] * attunements[attunement]
 	attuned_strength = max(total_value, 0.5)
-	return
 
 /obj/effect/proc_holder/spell/invoked/flowerfield/cast(list/targets, mob/living/user = usr)
 	set_attuned_strength(user?.mana_pool?.attunements || list())
@@ -65,34 +64,33 @@
 	var/turf/center = get_turf(targets[1])
 	if (!center.density && !istype(center, /turf/open/transparent/openspace) && !(locate(/obj/structure/flora/field) in center.contents))
 		var/obj/structure/flora/field/F = new field_type(center)
-		F.dir = pick(NORTH, SOUTH, EAST, WEST)
+		F.dir = pick(GLOB.cardinals)
 
-	for (var/i = 1, i <= range, i++)
+	for (var/I in 1 to range)
 		var/list/ring_turfs = list()
-		for (var/turf/T in range(center, i))
-			if ((get_dist(center, T) == i) && (!T.density) && (!istype(T, /turf/open/transparent/openspace)))
-			{
-				if (i == range)
-				{
-					var/dx = abs(T.x - center.x)
-					var/dy = abs(T.y - center.y)
-					if (dx == range && dy == range)
-						continue
-				}
-				if (prob(75))
-					ring_turfs += T
-			}
-		if (ring_turfs.len)
+		for (var/turf/T in orange(center, i))
+			if (T.density || isopenspace(T))
+				continue
+			if (i == range)
+				var/dx = abs(T.x - center.x)
+				var/dy = abs(T.y - center.y)
+				if (dx == range && dy == range)
+					continue
+			if (prob(75))
+				ring_turfs += T
+		if (length(ring_turfs))
 			addtimer(CALLBACK(src, PROC_REF(apply_flowerfield), ring_turfs, field_type), i * 5)
 
-	return TRUE
+	return ..()
 
 /obj/effect/proc_holder/spell/invoked/flowerfield/proc/apply_flowerfield(list/affected_turfs, type)
-	for (var/turf/T in affected_turfs)
+	if(!LAZYLEN(affected_turfs || !type)
+		return
+	for (var/turf/T as anything in affected_turfs)
 		if (T.density || istype(T, /turf/open/transparent/openspace) || locate(/obj/structure/flora/field) in T.contents)
 			continue
 		var/obj/structure/flora/field/F = new type(T)
-		F.dir = pick(NORTH, SOUTH, EAST, WEST)
+		F.dir =  pick(GLOB.cardinals)
 
 
 /*-----------------\
@@ -137,8 +135,7 @@
 /obj/structure/flora/field/proc/flower_decay()
 	playsound(src, "plantcross", 100, FALSE)
 	icon_state = "leaf_dying"
-	sleep(10)
-	qdel(src)
+	QDEL_IN(src, 1 SECONDS)
 
 /obj/structure/flora/field/proc/apply_flower_effect(mob/living/L, effect_path)
 	if (!L) return
