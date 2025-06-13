@@ -40,7 +40,8 @@
 		/obj/item/alch/calendula = /obj/structure/flora/field/calendula,
 		/obj/item/reagent_containers/food/snacks/produce/manabloom = /obj/structure/flora/field/manabloom,
 		/obj/item/alch/matricaria = /obj/structure/flora/field/matricaria,
-		/obj/item/reagent_containers/food/snacks/produce/poppy = /obj/structure/flora/field/poppy
+		/obj/item/reagent_containers/food/snacks/produce/poppy = /obj/structure/flora/field/poppy,
+		/obj/item/alch/euphorbia = /obj/structure/flora/field/euphorbia
 	)
 
 	var/obj/item/alch/flower_item = null
@@ -528,7 +529,7 @@
 /datum/status_effect/buff/flowerfield_resistance
 	id = "flowerfield_resistance"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/flowerfield_resistance
-	duration = 5 SECONDS
+	duration = 7 SECONDS
 
 /datum/status_effect/buff/flowerfield_resistance/on_apply()
 	. = ..()
