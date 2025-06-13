@@ -54,16 +54,10 @@
 			break
 
 	if (!flower_item)
-	{
-		to_chat(user, span_warning("No suitable flower found. Summoning hostile thorns instead."))
-		field_type = /obj/structure/flora/field/euphorbia
-	}
-	else
-	{
-		animate(flower_item, alpha = 0, time = 5)
-		sleep(5)
-		qdel(flower_item)
-	}
+		to_chat(user, span_warning("I need a flower..."))
+		return FALSE
+	animate(flower_item, alpha = 0, time = 5)
+	QDEL_IN(flower_item, 0.5 SECONDS)
 
 	user.apply_status_effect(/datum/status_effect/buff/flowerfield_resistance)
 	playsound(user, sound, 60, TRUE)
