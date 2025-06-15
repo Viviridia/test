@@ -168,7 +168,7 @@
 		var/mob/living/L = AM
 		if (HAS_TRAIT(L, TRAIT_FLOWERFIELD_IMMUNITY))
 			return
-		if (prob(20))
+		if (prob(30))
 			L.emote("spin", forced=TRUE)
 			L.Stun(5)
 		apply_flower_effect(L, /datum/status_effect/debuff/salvia_madness)
@@ -410,8 +410,8 @@
 
 	L.adjustBruteLoss(-2)
 	L.adjustFireLoss(-2)
-	L.adjustToxLoss(-1)
-	L.adjustOxyLoss(-1)
+	L.adjustToxLoss(-1.5)
+	L.adjustOxyLoss(-1.3)
 	var/list/wounds = L.get_wounds()
 	if(wounds.len > 0)
 		L.heal_wounds(1)
@@ -481,7 +481,7 @@
 	if (!M || M.stat != CONSCIOUS) return
 	check_field_presence()
 	M.confused = max(M.confused, 5)
-	if (prob(10) && !M.has_status_effect(/datum/status_effect/frost_trap))
+	if (prob(15) && !M.has_status_effect(/datum/status_effect/frost_trap))
 		M.apply_status_effect(/datum/status_effect/frost_trap)
 		M.adjustFireLoss(-8)
 
