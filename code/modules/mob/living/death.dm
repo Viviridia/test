@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(last_messages)
+
 /mob/living/gib(no_brain, no_organs, no_bodyparts)
 	var/prev_lying = lying_angle
 	if(stat != DEAD)
@@ -109,6 +111,8 @@
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable/screen/gameover, Fade), TRUE), 100)
 		add_client_colour(/datum/client_colour/monochrome/death)
 		client?.verbs |= /client/proc/descend
+		if(last_message)
+			GLOB.last_messages |= last_message
 
 	for(var/s in ownedSoullinks)
 		var/datum/soullink/S = s

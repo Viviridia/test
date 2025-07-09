@@ -54,8 +54,8 @@
 /datum/alch_grind_recipe/fish
 	picky = FALSE
 	valid_input = /obj/item/reagent_containers/food/snacks/fish
-	valid_outputs = list(/obj/item/alch/waterdust = 1)
-	bonus_chance_outputs = list(/obj/item/alch/bonemeal = 50)
+	valid_outputs = list(/obj/item/alch/waterdust = 2) // makes fish worth buying , fisher/apothecary combo
+	bonus_chance_outputs = list(/obj/item/alch/waterdust = 25 ,/obj/item/alch/bonemeal = 33)
 
 /datum/alch_grind_recipe/swampweed
 	valid_input = /obj/item/reagent_containers/food/snacks/produce/swampweed
@@ -80,11 +80,17 @@
 /datum/alch_grind_recipe/fyritius
 	valid_input = /obj/item/reagent_containers/food/snacks/produce/fyritius
 	valid_outputs = list(/obj/item/alch/firedust = 1)
+	bonus_chance_outputs = list(/obj/item/alch/firedust = 50)
 
 /datum/alch_grind_recipe/poppy
 	valid_input = /obj/item/reagent_containers/food/snacks/produce/poppy
 	valid_outputs = list(/obj/item/reagent_containers/powder/ozium = 1)
-	bonus_chance_outputs = list(/obj/item/alch/airdust =33,/obj/item/alch/earthdust = 33)
+	bonus_chance_outputs = list(/obj/item/alch/airdust =33 ,/obj/item/alch/earthdust = 33)
+
+/datum/alch_grind_recipe/manabloom
+	valid_input = /obj/item/reagent_containers/food/snacks/produce/manabloom
+	valid_outputs = list(/obj/item/reagent_containers/powder/manabloom = 1)
+	bonus_chance_outputs = list(/obj/item/reagent_containers/powder/manabloom =33, /obj/item/alch/runedust= 33)
 
 /datum/alch_grind_recipe/seeds
 	picky = FALSE

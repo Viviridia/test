@@ -87,10 +87,10 @@
 	attunements_to_generate = null
 	negative_attunements = null
 
-	QDEL_NULL(transfer_rates)
-	QDEL_NULL(transfer_caps)
-	QDEL_NULL(transferring_to)
-	QDEL_NULL(transferring_from) // we already have a signal registered, so if we qdel we stop transfers
+	transfer_rates = null
+	transfer_caps = null
+	transferring_to = null
+	transferring_from = null
 
 	STOP_PROCESSING(SSmagic, src)
 

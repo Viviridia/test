@@ -23,8 +23,7 @@
 	playsound(T,'sound/magic/meteorstorm.ogg', 80, TRUE)
 	. = ..()
 	sleep(2)
-	spawn(0)
-		create_meteors(T)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/effect/proc_holder/spell/invoked/meteor_storm, create_meteors), T)
 
 /obj/effect/proc_holder/spell/invoked/meteor_storm/set_attuned_strength(list/incoming_attunements)
 	var/total_value = 1

@@ -767,6 +767,37 @@
 	density = TRUE
 	anchored = FALSE
 
+/obj/structure/fluff/telescope/attack_hand(mob/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	to_chat(H,  span_notice("I look through the telescope, hoping to glimpse something beyond."))
+	if(!do_after(H, 3 SECONDS, target = src))
+		return
+
+	var/random_message = rand(1,5)
+	switch(random_message)
+		if(1)
+			to_chat(H,  span_notice("You can see Noc rotating."))
+			if(do_after(H, 1 SECONDS, target = src))
+				to_chat(H, span_good("Noc's glow seems to help clear your thoughts."))
+				H.apply_status_effect(/datum/status_effect/buff/nocblessing)
+				H.playsound_local(H, 'sound/misc/notice (2).ogg', 100, FALSE)
+		if(2)
+			to_chat(H, span_warning("Looking at Astrata blinds you"))
+			if(do_after(H, 1 SECONDS, src)) // QUICK LOOK AWAY !!
+				var/obj/item/bodypart/affecting = H.get_bodypart("head")
+				to_chat(H, span_userdanger("The blinding light causes you intense pain!"))
+				H.emote("scream", forced=TRUE)
+				if(affecting && affecting.receive_damage(0, 10))
+					H.update_damage_overlays()
+		if(3)
+			to_chat(H, span_notice("The stars smile at you."))
+		if(4)
+			to_chat(H, span_notice("Blessed yellow strife."))
+		if(5)
+			to_chat(H, span_notice("You see a star!"))
+
 /obj/structure/fluff/stonecoffin
 	name = "stone coffin"
 	desc = "A damaged stone coffin..."
@@ -774,38 +805,6 @@
 	icon_state = "stonecoffin"
 	density = TRUE
 	anchored = TRUE
-
-/obj/structure/fluff/telescope/attack_hand(mob/user)
-	if(!ishuman(user))
-		return
-
-	var/mob/living/carbon/human/H = user
-	var/random_message = rand(1,5)
-	var/message2send = ""
-	switch(random_message)
-		if(1)
-			message2send = "You can see Noc rotating."
-		if(2)
-			message2send = "Looking at Astrata blinds you!"
-		if(3)
-			message2send = "The stars smile at you."
-		if(4)
-			message2send = "Blessed yellow strife."
-		if(5)
-			message2send = "You see a star!"
-	to_chat(H, "<span class='notice'>[message2send]</span>")
-
-	if(random_message == 2)
-		if(do_after(H, 2.5 SECONDS, src))
-			var/obj/item/bodypart/affecting = H.get_bodypart("head")
-			to_chat(H, "<span class='warning'>The blinding light causes you intense pain!</span>")
-			if(affecting && affecting.receive_damage(0, 5))
-				H.update_damage_overlays()
-
-	if(message2send == "You can see noc rotating!")
-		if(do_after(H, 25, target = src))
-			to_chat(H, span_warning("Noc's glow seems to help clear your thoughts."))
-			H.apply_status_effect(/datum/status_effect/buff/nocblessing)
 
 /obj/structure/fluff/globe
 	name = "globe"
@@ -820,7 +819,7 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-	var/random_message = pick("You spin the globe!", "You land on Rockhill!", "You land on Vanderlin!", "You land on Heartfelt!", "You land on Zybantu!", "You land on Port Thornvale!", "You land on Grenzelhoft!", "You land on Valoria!", "You land on the Fog Islands!")
+	var/random_message = pick("You spin the globe!", "You land on Rockhill!", "You land on Vanderlin!", "You land on Heartfelt!", "You land on Zaladin!", "You land on Port Thornvale!", "You land on Grenzelhoft!", "You land on Valoria!", "You land on the Fog Islands!")
 	to_chat(H, "<span class='notice'>[random_message]</span>")
 
 /obj/structure/fluff/statue/femalestatue/Initialize()
@@ -905,24 +904,37 @@
 	name = "arachnid idol"
 	desc = "A stone idol of a spider with the head of a smirking elven woman. Her eyes seem to follow you."
 	icon_state = "spidercore"
+	var/goal = 5
+	var/current = 0
+	var/objective = /obj/item/organ/ears
+
+/obj/structure/fluff/statue/spider/examine(mob/user)
+	. = ..()
+	if(isdarkelf(user))
+		say("BRING ME [goal - current] EARS. I HUNGER.",language = /datum/language/elvish)
 
 /obj/structure/fluff/statue/spider/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/reagent_containers/food/snacks/spiderhoney))
+	if(istype(W, objective))
 		if(user.mind)
-			if(user.mind.special_role == "Dark Elf")
+			if(isdarkelf(user))
 				playsound(loc,'sound/misc/eat.ogg', rand(30,60), TRUE)
-				SSmapping.retainer.delf_contribute += 1
-				if(SSmapping.retainer.delf_contribute >= SSmapping.retainer.delf_goal)
+				current += 1
+				SSmapping.retainer.delf_ears += 1
+				if(current >= goal)
 					say("YOU HAVE DONE WELL, MY CHILD.",language = /datum/language/elvish)
+					user.adjust_triumphs(1, reason = "Pleased the dark lady")
+
+					qdel(src)
+					// TODO : add crumbling message and sound
 				else
-					say("BRING ME [SSmapping.retainer.delf_goal - SSmapping.retainer.delf_contribute] MORE. I HUNGER.",language = /datum/language/elvish)
+					say("BRING ME [current - goal] MORE EARS. I HUNGER.",language = /datum/language/elvish)
 				qdel(W)
 				return TRUE
 	..()
 
 /obj/structure/fluff/statue/evil
 	name = "idol"
-	desc = "A statue built to the robber-god, Matthios, who stole the gift of fire from the underworld. It is said that he grants the wishes of those pagan bandits (free folk) who feed him money."
+	desc = "A statue built to the robber-god, Matthios. The visage resembles nobody in particular. It is said that he grants the wishes of those pagan bandits (free folk) who feed him money."
 	icon_state = "evilidol"
 	icon = 'icons/roguetown/misc/structure.dmi'
 
@@ -1165,7 +1177,10 @@
 						thegroom.adjust_triumphs(1)
 						thebride.adjust_triumphs(1)
 						//Bite the apple first if you want to be the groom.
-						priority_announce("[thegroom.real_name] has married [bridefirst]!", title = "Holy Union!", sound = 'sound/misc/bell.ogg')
+						if(thegroom.gender == thebride.gender)	//Homophobic dog stare. Pack it up, skittles squad.
+							priority_announce("Eora begrudgingly accepts the marriage between [thegroom.real_name] and [bridefirst].", title = "Holy Union!", sound = 'sound/misc/bell.ogg')
+						else
+							priority_announce("Eora proudly embraces the marriage between [thegroom.real_name] and [bridefirst]!", title = "Holy Union!", sound = 'sound/misc/bell.ogg')
 						thegroom.remove_stress(/datum/stressevent/eora_matchmaking)
 						thebride.remove_stress(/datum/stressevent/eora_matchmaking)
 						SEND_GLOBAL_SIGNAL(COMSIG_GLOBAL_MARRIAGE, thegroom, thebride)

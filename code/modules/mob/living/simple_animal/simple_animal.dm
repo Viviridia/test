@@ -1,5 +1,3 @@
-#define MAX_FARM_ANIMALS 20
-
 GLOBAL_VAR_INIT(farm_animals, FALSE)
 
 /mob/living/simple_animal
@@ -408,6 +406,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 				if(rotstuff && istype(I,/obj/item/reagent_containers/food/snacks))
 					var/obj/item/reagent_containers/food/snacks/F = I
 					F.become_rotten()
+	SEND_SIGNAL(user, COMSIG_MOB_BUTCHERED, src)
 	gib()
 
 /mob/living/simple_animal/spawn_dust(just_ash = FALSE)
