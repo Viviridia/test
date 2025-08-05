@@ -147,6 +147,7 @@
 			if(composter_source)
 				set_movement_target(controller, composter_source)
 				return TRUE
+	return FALSE
 
 /datum/ai_behavior/gnome_crop_tending/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
