@@ -88,7 +88,7 @@
 			return TRUE
 
 	// If carrying compost, find hungry soil
-	else if (carried_item && istype(carried_item, /obj/item/compost))
+	else if (carried_item && istype(carried_item, /obj/item/fertilizer/compost))
 		var/obj/structure/soil/fert_soil = find_soil_needing_fertilizer(controller)
 		if (fert_soil)
 			set_movement_target(controller, fert_soil)
@@ -139,13 +139,14 @@
 		// PRIORITY 5: Fertilizes hungry soil
 		var/obj/structure/soil/fert_soil = find_soil_needing_fertilizer(controller)
 		if(fert_soil)
-			var/obj/structure/composter/composter_source = controller.blackboard[BB_GNOME_COMPOST_SOURCE] || /datum/pet_command/gnome/tend_crops::find_composter_source(controller)
+			var/obj/structure/composter/composter_source = controller.blackboard[BB_GNOME_COMPOST_SOURCE]
+			if(!composter_source)
+				composter_source = find_composter_source(controller)
+				if(composter_source)
+					controller.set_blackboard_key(BB_GNOME_COMPOST_SOURCE, composter_source)
 			if(composter_source)
-				controller.set_blackboard_key(BB_GNOME_COMPOST_SOURCE, composter_source)
 				set_movement_target(controller, composter_source)
 				return TRUE
-
-	return FALSE
 
 /datum/ai_behavior/gnome_crop_tending/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
@@ -175,7 +176,7 @@
 			return
 
 	// fertilizes soil with compost
-	else if(carried_item && istype(carried_item, /obj/item/compost) && istype(current_target, /obj/structure/soil))
+	else if(carried_item && istype(carried_item, /obj/item/fertilizer/compost) && istype(current_target, /obj/structure/soil))
 		var/obj/structure/soil/soil = current_target
 		fertilize_soil(controller, soil, carried_item)
 		finish_action(controller, TRUE)
@@ -207,7 +208,7 @@
 	else if(!carried_item && istype(current_target, /obj/structure/composter))
 		var/obj/structure/composter/comp = current_target
 		if(comp.ready_compost >= 100)
-			var/obj/item/compost/new_compost = comp.take_out_compost()
+			var/obj/item/fertilizer/compost/new_compost = comp.take_out_compost()
 			if(new_compost && new_compost.forceMove(pawn))
 				controller.set_blackboard_key(BB_SIMPLE_CARRY_ITEM, new_compost)
 				pawn.visible_message(span_notice("[pawn] takes compost from [comp]."))
@@ -246,7 +247,7 @@
 /datum/ai_behavior/gnome_crop_tending/proc/find_soil_needing_fertilizer(datum/ai_controller/controller)
 	var/mob/living/pawn = controller.pawn
 	for(var/obj/structure/soil/soil in oview(7, pawn))
-		if(soil.plant && !soil.plant_dead && soil.nutrition < 300 * 0.6)
+		if(soil.plant && !soil.plant_dead && soil.can_accept_fertilizer())
 			return soil
 	return null
 
@@ -284,6 +285,13 @@
 			return container
 	return null
 
+/datum/ai_behavior/gnome_crop_tending/proc/find_composter_source(datum/ai_controller/controller)
+	var/mob/living/pawn = controller.pawn
+	for(var/obj/structure/composter/comp in oview(7, pawn))
+		if(comp.ready_compost >= 100)
+			return comp
+	return null
+
 /datum/ai_behavior/gnome_crop_tending/proc/is_water_container(obj/item/item)
 	if(!istype(item, /obj/item/reagent_containers))
 		return FALSE
@@ -309,13 +317,11 @@
 
 /datum/ai_behavior/gnome_crop_tending/proc/fertilize_soil(datum/ai_controller/controller, obj/structure/soil/soil, obj/item/fertilizer)
 	var/mob/living/pawn = controller.pawn
-
-	if(istype(fertilizer, /obj/item/compost))
-		soil.adjust_nutrition(150)
-		soil.try_handle_fertilizing(fertilizer, pawn, null)
-		controller.clear_blackboard_key(BB_SIMPLE_CARRY_ITEM)
-		pawn.visible_message(span_notice("[pawn] fertilizes [soil]."))
-		playsound(soil, pick('sound/foley/touch1.ogg','sound/foley/touch2.ogg','sound/foley/touch3.ogg'), 170, TRUE)
+	if(soil.can_accept_fertilizer() && (istype(fertilizer, /obj/item/fertilizer) || istype(fertilizer, /obj/item/natural/poo)))
+		if(soil.try_handle_fertilizing(fertilizer, pawn, null))
+			controller.clear_blackboard_key(BB_SIMPLE_CARRY_ITEM)
+			pawn.visible_message(span_notice("[pawn] fertilizes [soil] with [fertilizer.name]."))
+			playsound(soil, pick('sound/foley/touch1.ogg','sound/foley/touch2.ogg','sound/foley/touch3.ogg'), 170, TRUE)
 
 /datum/ai_behavior/gnome_crop_tending/proc/plant_seed(datum/ai_controller/controller, obj/structure/soil/soil, obj/item/seed)
 	var/mob/living/pawn = controller.pawn
