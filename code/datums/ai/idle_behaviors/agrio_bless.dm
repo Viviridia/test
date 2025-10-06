@@ -1,4 +1,3 @@
-#define BB_AGRIOPYLON_BLESS_COOLDOWN "agriopylon_bless_cooldown"
 #define AGRIOPYLON_STATE_IDLE 0
 #define AGRIOPYLON_STATE_BLESSING 1
 

@@ -21,6 +21,7 @@
 		/datum/attunement/life = 0.7
 	)
 
+	var/mob/living/simple_animal/hostile/retaliate/fae/agriopylon/gardener_ref
 	var/static/list/garden_fae = list(
 		/obj/structure/flora/grass/herb/atropa      = /mob/living/simple_animal/hostile/retaliate/fae/agriopylon/atropa,
 		/obj/structure/flora/grass/herb/matricaria  = /mob/living/simple_animal/hostile/retaliate/fae/agriopylon/matricaria,
@@ -43,34 +44,38 @@
 /datum/action/cooldown/spell/conjure/garden_fae/before_cast(atom/cast_on)
 	. = ..()
 	if(. & SPELL_CANCEL_CAST)
-		return .
+		return
 	if(!istype(cast_on, /obj/structure/flora/grass/herb))
 		to_chat(owner, span_warning("You must target a wild herb!"))
-		reset_spell_cooldown()
 		return . | SPELL_CANCEL_CAST
-
-	return .
+	if(gardener_ref)
+		if(!QDELETED(gardener_ref))
+			qdel(gardener_ref)
+		gardener_ref = null
+	var/mob_type = garden_fae[cast_on.type]
+	if(!mob_type)
+		to_chat(owner, span_warning("Your gardener crumbles into dust."))
+		return . | SPELL_CANCEL_CAST
+	return
 
 /datum/action/cooldown/spell/conjure/garden_fae/cast(atom/cast_on)
-	for(var/mob/living/simple_animal/hostile/retaliate/fae/agriopylon/gardener in world)
-		if(gardener && gardener.owner == owner)
-			qdel(gardener)
-
 	var/turf/T = get_turf(cast_on)
 	var/mob_type = garden_fae[cast_on.type]
-
-	if(!mob_type)
-		to_chat(owner, span_warning("This herb cannot summon a gardener."))
-		reset_spell_cooldown()
-		return SPELL_CANCEL_CAST
 	qdel(cast_on)
-
 	summon_type = list(mob_type)
 	return ..(T)
 
 /datum/action/cooldown/spell/conjure/garden_fae/post_summon(atom/summoned_object, atom/cast_on)
 	var/mob/living/simple_animal/hostile/retaliate/fae/agriopylon/gardener = summoned_object
-	if(!gardener) return
+	if(!gardener)
+		return
 	gardener.befriend(owner)
 	gardener.owner = owner
+	gardener_ref = gardener
+
+/datum/action/cooldown/spell/conjure/garden_fae/Destroy()
+	if(gardener_ref && !QDELETED(gardener_ref))
+		qdel(gardener_ref)
+	gardener_ref = null
+	return ..()
 

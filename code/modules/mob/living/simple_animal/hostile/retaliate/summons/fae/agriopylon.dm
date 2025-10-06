@@ -40,9 +40,9 @@
 	var/static/list/pet_commands = list(
 		/datum/pet_command/follow,
 		/datum/pet_command/idle,
-		/datum/pet_command/gnome/search_range,
-		/datum/pet_command/gnome/tend_crops,
-		/datum/pet_command/gnome/stop_tending
+		/datum/pet_command/agriopylon/search_range,
+		/datum/pet_command/agriopylon/tend_crops,
+		/datum/pet_command/agriopylon/stop_tending
 	)
 
 /mob/living/simple_animal/hostile/retaliate/fae/agriopylon/Initialize(mapload)

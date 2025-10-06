@@ -14,23 +14,49 @@
 	item_type = /obj/item/weapon/briar_claw/left
 	uses_component = TRUE
 	refresh_count = 0
+	delete_old = TRUE
 	attunements = list(
 		/datum/attunement/blood = 0.3,
 		/datum/attunement/earth = 0.7
 	)
 
-/datum/action/cooldown/spell/undirected/conjure_item/briar_claw/make_item()
+	var/hand_to_transform = "left"
+
+/datum/action/cooldown/spell/undirected/conjure_item/briar_claw/can_cast_spell(feedback)
+	if(!iscarbon(owner))
+		if(feedback)
+			owner.balloon_alert(owner, "Only mortals of flesh may bear the briar claw!")
+		return FALSE
+	return ..()
+
+/datum/action/cooldown/spell/undirected/conjure_item/briar_claw/before_cast(atom/cast_on)
+	. = ..()
+	if(. & SPELL_CANCEL_CAST)
+		return .
+
 	var/mob/living/carbon/M = owner
 	if(!M)
-		return
-	var/obj/item/weapon/briar_claw/claw
+		to_chat(owner, span_warning("You have no hands to transform!"))
+		return SPELL_CANCEL_CAST
+
 	if(M.active_hand_index == 1)
+		hand_to_transform = "left"
+	else
+		hand_to_transform = "right"
+
+	return .
+
+/datum/action/cooldown/spell/undirected/conjure_item/briar_claw/make_item()
+	var/obj/item/weapon/briar_claw/claw
+	if(hand_to_transform == "left")
 		claw = new /obj/item/weapon/briar_claw/left()
 	else
 		claw = new /obj/item/weapon/briar_claw/right()
+
 	LAZYADD(item_refs, WEAKREF(claw))
 	claw.AddComponent(/datum/component/conjured_item, item_duration, associated_skill, skill_threshold)
-	playsound(M, 'sound/ambience/noises/werewolf_howl1_01.ogg', 70, TRUE)
+
+	playsound(owner, 'sound/ambience/noises/werewolf_howl1_01.ogg', 70, TRUE)
 	return claw
 
 /obj/item/weapon/briar_claw

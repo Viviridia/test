@@ -32,7 +32,7 @@
 	if(!send_item)
 		return ..()
 
-	if(!owner.mind?.known_people || !LAZYLEN(owner.mind.known_people))
+	if(!length(owner.mind?.known_people))
 		to_chat(owner, span_warning("The falcon is confused... You know no one to send this item to."))
 		return FALSE
 	var/recipient = browser_input_text(owner, "Whose name shall the falcon seek?", "THE WINGS")
@@ -56,8 +56,6 @@
 
 	to_chat(owner, span_notice("The falcon's wings unfurl, and it takes flight with your [send_item.name]."))
 	playsound(owner, 'sound/vo/mobs/bird/birdfly.ogg', 100, TRUE, -1)
-	StartCooldown()
-	return TRUE
 
 /obj/effect/falcon_messenger
 	name = "messenger falcon"
@@ -90,8 +88,8 @@
 	if(recipient && !QDELETED(recipient))
 		recipient.Immobilize(1 SECONDS)
 
-	var/matrix/diveTilt = matrix(); diveTilt.Turn(40)
-	var/matrix/climbTilt = matrix(); climbTilt.Turn(-25)
+	var/matrix/diveTilt = matrix().Turn(40)
+	var/matrix/climbTilt = matrix().Turn(-25)
 
 	animate(src, time = 12, pixel_x = 0, pixel_y = -16, transform = diveTilt, easing = CUBIC_EASING | EASE_IN)
 	animate(src, time = 18, pixel_x = 32, pixel_y = 24, transform = climbTilt, alpha = 0, easing = CUBIC_EASING | EASE_OUT)
@@ -149,9 +147,9 @@
 	if(QDELETED(src) || !owner_mob)
 		return
 
-	var/matrix/tiltLeft = matrix(); tiltLeft.Turn(-20)
-	var/matrix/tiltRight = matrix(); tiltRight.Turn(25)
-	var/matrix/flipRight = matrix(); flipRight.Scale(-1, 1)
+	var/matrix/tiltLeft = matrix().Turn(-20)
+	var/matrix/tiltRight = matrix().Turn(25)
+	var/matrix/flipRight = matrix().Scale(-1, 1)
 	var/matrix/neutral = matrix()
 
 	if(cycle_count % 2 == 0)
@@ -177,7 +175,7 @@
 		qdel(src)
 
 /obj/effect/falcon_strike_fx/proc/do_strike()
-	if(owner_mob && !QDELETED(owner_mob))
+	if(QDELETED(owner_mob))
 		owner_mob.adjustBruteLoss(10)
 		owner_mob.adjust_blindness(0.2)
 		owner_mob.Jitter(1)
@@ -204,7 +202,7 @@
 	return TRUE
 
 /datum/status_effect/debuff/falcon_strike/on_remove()
-	if(falcon_fx && !QDELETED(falcon_fx))
+	if(QDELETED(falcon_fx))
 		qdel(falcon_fx)
 	return ..()
 
