@@ -178,6 +178,7 @@
 	playsound(get_turf(user), 'sound/misc/wind.ogg', 100, TRUE, -1)
 	to_chat(user, span_good("You find seeds more easily."))
 	user.emote("smile")
+	ADD_TRAIT(user, TRAIT_SEED_FINDER, TRAIT_GENERIC)
 	user.add_spell(/datum/action/cooldown/spell/conjure/garden_fae, source = user.cleric)
 	user.apply_status_effect(/datum/status_effect/buff/calm)
 

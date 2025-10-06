@@ -20,12 +20,10 @@
 		/datum/attunement/earth = 0.7
 	)
 
-	var/hand_to_transform = "left"
-
 /datum/action/cooldown/spell/undirected/conjure_item/briar_claw/can_cast_spell(feedback)
 	if(!iscarbon(owner))
 		if(feedback)
-			owner.balloon_alert(owner, "Only mortals of flesh may bear the briar claw!")
+			owner.balloon_alert(owner, "Only mortals may use the briar claw!")
 		return FALSE
 	return ..()
 
@@ -33,31 +31,15 @@
 	. = ..()
 	if(. & SPELL_CANCEL_CAST)
 		return .
-
 	var/mob/living/carbon/M = owner
 	if(!M)
 		to_chat(owner, span_warning("You have no hands to transform!"))
 		return SPELL_CANCEL_CAST
-
 	if(M.active_hand_index == 1)
-		hand_to_transform = "left"
+		item_type = /obj/item/weapon/briar_claw/left
 	else
-		hand_to_transform = "right"
-
+		item_type = /obj/item/weapon/briar_claw/right
 	return .
-
-/datum/action/cooldown/spell/undirected/conjure_item/briar_claw/make_item()
-	var/obj/item/weapon/briar_claw/claw
-	if(hand_to_transform == "left")
-		claw = new /obj/item/weapon/briar_claw/left()
-	else
-		claw = new /obj/item/weapon/briar_claw/right()
-
-	LAZYADD(item_refs, WEAKREF(claw))
-	claw.AddComponent(/datum/component/conjured_item, item_duration, associated_skill, skill_threshold)
-
-	playsound(owner, 'sound/ambience/noises/werewolf_howl1_01.ogg', 70, TRUE)
-	return claw
 
 /obj/item/weapon/briar_claw
 	parent_type = /obj/item/weapon/werewolf_claw
