@@ -57,7 +57,6 @@
 		to_chat(owner, span_warning("Your gardener crumbles into dust."))
 		return . | SPELL_CANCEL_CAST
 	summon_type = list(mob_type)
-	return
 
 /datum/action/cooldown/spell/conjure/garden_fae/cast(atom/cast_on)
 	var/turf/T = get_turf(cast_on)

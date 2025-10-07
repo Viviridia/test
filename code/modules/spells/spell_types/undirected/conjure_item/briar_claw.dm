@@ -15,22 +15,25 @@
 	uses_component = TRUE
 	refresh_count = 0
 	delete_old = TRUE
+	item_outline = "#1bab68"
 	attunements = list(
 		/datum/attunement/blood = 0.3,
 		/datum/attunement/earth = 0.7
 	)
 
 /datum/action/cooldown/spell/undirected/conjure_item/briar_claw/can_cast_spell(feedback)
+	. = ..()
+	if(!.)
+		return
 	if(!iscarbon(owner))
 		if(feedback)
 			owner.balloon_alert(owner, "Only mortals may use the briar claw!")
 		return FALSE
-	return ..()
 
 /datum/action/cooldown/spell/undirected/conjure_item/briar_claw/before_cast(atom/cast_on)
 	. = ..()
 	if(. & SPELL_CANCEL_CAST)
-		return .
+		return
 	var/mob/living/carbon/M = owner
 	if(!M)
 		to_chat(owner, span_warning("You have no hands to transform!"))
@@ -39,7 +42,6 @@
 		item_type = /obj/item/weapon/briar_claw/left
 	else
 		item_type = /obj/item/weapon/briar_claw/right
-	return .
 
 /obj/item/weapon/briar_claw
 	parent_type = /obj/item/weapon/werewolf_claw

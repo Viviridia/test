@@ -57,7 +57,7 @@
 	flower_act.color = current_color
 	flower_act.layer = MOB_LAYER + 0.1
 	update_flower_color()
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 	var/offset = rand(0, 30)
 	addtimer(CALLBACK(src, PROC_REF(_bobbing_loop)), offset)
 
@@ -68,7 +68,7 @@
 		flower_idle.color = current_color
 	if(flower_act)
 		flower_act.color = current_color
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/hostile/retaliate/fae/agriopylon/update_overlays()
 	. = ..()
@@ -90,7 +90,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/fae/agriopylon/proc/change_agriopylon_state(new_state)
 	agriopylon_state = new_state
-	update_appearance()
+	update_appearance(UPDATE_ICON)
 
 /mob/living/simple_animal/hostile/retaliate/fae/agriopylon/proc/start_bless_animation()
 	change_agriopylon_state(AGRIOPYLON_STATE_BLESSING)
@@ -156,4 +156,3 @@
 
 #undef AGRIOPYLON_STATE_IDLE
 #undef AGRIOPYLON_STATE_BLESSING
-
