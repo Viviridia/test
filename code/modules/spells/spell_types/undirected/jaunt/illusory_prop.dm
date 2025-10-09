@@ -17,9 +17,15 @@
 
 	var/obj/effect/dummy/bush_disguise/active_dummy = null
 	var/static/list/allowed_structures = list(
-		/obj/item/coin,
-		/obj/item/statue,
+		/obj/item/ingot/gold,
+		/obj/item/statue/gold,
+		/obj/item/statue/silver,
 		/obj/structure/closet/crate/chest,
+		/obj/structure/chair/wood,
+		/obj/item/chair/stool,
+		/obj/structure/table/wood,
+		/obj/structure/table/church,
+		/obj/structure/fluff/psycross,
 	)
 
 /datum/action/cooldown/spell/undirected/jaunt/illusory_prop/cast(mob/living/cast_on)
