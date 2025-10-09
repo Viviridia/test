@@ -35,8 +35,8 @@
 /datum/repeatable_crafting_recipe/dendor/sacrifice_hiding
 	name = "citrine sacrifice to Dendor (unique)"
 	attacked_atom = /obj/structure/fluff/psycross/crafted/shrine/dendor_saiga
-	starting_atom = /obj/item/reagent_containers/food/snacks/produce/fruit/tangerine
-	requirements = list(/obj/item/reagent_containers/food/snacks/produce/fruit/tangerine = 1,
+	starting_atom = /obj/item/alch/herb/calendula
+	requirements = list(/obj/item/alch/herb/calendula = 1,
 				/obj/item/natural/fibers = 1,
 				/obj/item/reagent_containers/food/snacks/produce/fruit/jacksberry = 1)
 	output = /obj/item/dendor_blessing/hiding
