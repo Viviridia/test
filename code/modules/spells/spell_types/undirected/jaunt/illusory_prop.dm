@@ -21,11 +21,10 @@
 		/obj/item/statue/gold,
 		/obj/item/statue/silver,
 		/obj/structure/closet/crate/chest,
-		/obj/structure/chair/wood,
-		/obj/item/chair/stool,
+		/obj/structure/chair/wood, /obj/structure/chair/stool,
 		/obj/structure/table/wood,
-		/obj/structure/table/church,
-		/obj/structure/fluff/psycross,
+		/obj/structure/mannequin, /obj/structure/fluff/statue/tdummy,
+		/obj/item/plate,
 	)
 
 /datum/action/cooldown/spell/undirected/jaunt/illusory_prop/cast(mob/living/cast_on)
@@ -122,7 +121,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	plane = ABOVE_LIGHTING_PLANE
 	anchored = TRUE
-	duration = 1 SECONDS
+	duration = 0.8 SECONDS
 
 /obj/effect/temp_visual/chronophase_revert
 	name = "Chronophase Reversion"

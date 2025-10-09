@@ -18,7 +18,7 @@
 	rapid = 1
 	vision_range = 6
 	aggro_vision_range = 8
-	move_to_delay = 4
+	move_to_delay = 3
 	base_constitution = 2
 	base_strength = 1
 	base_speed = 10

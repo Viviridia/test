@@ -17,8 +17,8 @@
 
 	switch(current_task)
 		if("scanning")
-			if(!istype(controller.pawn, /mob/living/simple_animal/hostile/retaliate/fae/agriopylon))
-				// Priority 1: Harvest ready crops
+			// Priority 1: Harvest ready crops
+			if(!istype(pawn, /mob/living/simple_animal/hostile/retaliate/fae/agriopylon))
 				for(var/obj/structure/soil/soil in oview(7, pawn))
 					if(soil.produce_ready)
 						current_target = soil

@@ -9,7 +9,7 @@
 	antimagic_flags = MAGIC_RESISTANCE_HOLY
 	associated_skill = /datum/skill/magic/holy
 	required_items = list(/obj/item/clothing/neck/psycross/silver/dendor)
-	cooldown_time = 10 MINUTES
+	cooldown_time = 5 MINUTES
 	spell_cost = 50
 	charge_time = 2 SECONDS
 	charge_drain = 1
