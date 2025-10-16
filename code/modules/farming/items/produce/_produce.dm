@@ -433,6 +433,76 @@
 	tastes = list("plum" = 1)
 	rotprocess = SHELFLIFE_DECENT
 
+/obj/item/reagent_containers/food/snacks/produce/fruit/mango
+	name = "mangga"
+	seed = /obj/item/neuFarm/seed/mango
+	desc = "A golden tropical fruit bursting with sweet, juicy flesh."
+	icon_state = "mango"
+	bitesize = 2
+	dropshrink = 0.8
+	foodtype = FRUIT
+	slices_num = 2
+	slice_path = /obj/item/reagent_containers/food/snacks/fruit/mango_half
+	chopping_sound = TRUE
+	tastes = list("mangga" = 1)
+	rotprocess = SHELFLIFE_SHORT
+
+/obj/item/reagent_containers/food/snacks/produce/fruit/mangosteen
+	name = "mangosteen"
+	seed = /obj/item/neuFarm/seed/mangosteen
+	desc = "A tropical fruit with a thick purple rind and white segments within."
+	icon_state = "mangosteen"
+	bitesize = 2
+	dropshrink = 0.8
+	foodtype = FRUIT
+	slices_num = 1
+	slice_path = /obj/item/reagent_containers/food/snacks/fruit/mangosteen_opened
+	chopping_sound = TRUE
+	tastes = list("mangosteen" = 1)
+	rotprocess = SHELFLIFE_SHORT
+
+/obj/item/reagent_containers/food/snacks/produce/fruit/avocado
+	name = "avocado"
+	seed = /obj/item/neuFarm/seed/avocado
+	desc = "A verdant tropical fruit known for its smooth and creamy flesh."
+	icon_state = "avocado"
+	bitesize = 2
+	dropshrink = 0.9
+	foodtype = FRUIT
+	slices_num = 2
+	slice_path = /obj/item/reagent_containers/food/snacks/fruit/avocado_half
+	chopping_sound = TRUE
+	tastes = list("avocado" = 1)
+	rotprocess = SHELFLIFE_DECENT
+
+/obj/item/reagent_containers/food/snacks/produce/fruit/dragonfruit
+	name = "piyata"
+	seed = /obj/item/neuFarm/seed/dragonfruit
+	desc = "A spiky fruit with a pink skin and white flesh, Its taste is mild yet refreshing."
+	icon_state = "dragonfruit"
+	bitesize = 2
+	dropshrink = 0.7
+	foodtype = FRUIT
+	slices_num = 2
+	slice_path = /obj/item/reagent_containers/food/snacks/fruit/dragonfruit_half
+	chopping_sound = TRUE
+	tastes = list("piyata" = 1)
+	rotprocess = SHELFLIFE_DECENT
+
+/obj/item/reagent_containers/food/snacks/produce/fruit/pineapple
+	name = "ananas"
+	seed = /obj/item/neuFarm/seed/pineapple
+	desc = "A spiky fruit with golden skin, Its taste is tangy yet sweet and refreshing."
+	icon_state = "pineapple"
+	bitesize = 2
+	dropshrink = 0.9
+	foodtype = FRUIT
+	slices_num = 4
+	slice_path = /obj/item/reagent_containers/food/snacks/fruit/pineapple_slice
+	chopping_sound = TRUE
+	tastes = list("ananas" = 1)
+	rotprocess = SHELFLIFE_DECENT
+
 /*	..................   Turnip   ................... */ // only for veggie soup
 /obj/item/reagent_containers/food/snacks/produce/vegetable/turnip
 	name = "turnip"
