@@ -1,5 +1,5 @@
 /datum/plant_def/mango
-	name = "mango tree"
+	name = "mangga tree"
 	icon_state = "mangotree"
 	produce_type = /obj/item/reagent_containers/food/snacks/produce/fruit/mango
 	uproot_loot = list(/obj/item/grown/log/tree/small)
@@ -71,7 +71,7 @@
 	base_genetics.cold_resistance = TRAIT_GRADE_POOR
 
 /datum/plant_def/pineapple
-	name = "pineapple plant"
+	name = "ananas plant"
 	icon_state = "pineapple"
 	produce_type = /obj/item/reagent_containers/food/snacks/produce/fruit/pineapple
 	uproot_loot = list(/obj/item/grown/log/tree/stick)
@@ -93,7 +93,7 @@
 	base_genetics.cold_resistance = TRAIT_GRADE_POOR
 
 /datum/plant_def/dragonfruit
-	name = "dragonfruit cactus"
+	name = "piyata cactus"
 	icon_state = "dragonfruit"
 	produce_type = /obj/item/reagent_containers/food/snacks/produce/fruit/dragonfruit
 	uproot_loot = list(/obj/item/grown/log/tree/stick)
