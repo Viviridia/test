@@ -439,7 +439,7 @@
 
 /obj/item/reagent_containers/food/snacks/tart/cooked/pineapple
 	name = "ananas tart"
-	desc = "A tart with the sweet tang of mangosteen."
+	desc = "A tart bursting with bright, tangy pineapple."
 	icon_state = "pineappletart"
 	list_reagents = list(/datum/reagent/consumable/nutriment = FRUITPIE_NUTRITION)
 	tastes = list("ananas and butterdough" = 1)
@@ -447,7 +447,7 @@
 
 /obj/item/reagent_containers/food/snacks/tart/cooked/dragonfruit
 	name = "piyata tart"
-	desc = "A tart with the sweet tang of mangosteen."
+	desc = "A tart topped with mild, refreshing dragonfruit."
 	icon_state = "dragonfruittart"
 	list_reagents = list(/datum/reagent/consumable/nutriment = FRUITPIE_NUTRITION)
 	tastes = list("piyata and butterdough" = 1)
