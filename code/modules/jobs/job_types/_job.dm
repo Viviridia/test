@@ -491,6 +491,9 @@
 	equipped_human.remove_spells(source = src)
 
 /datum/job/proc/get_informed_title(mob/mob)
+	if(mob.admin_title)
+		return mob.admin_title
+
 	if(title_override)
 		return title_override
 

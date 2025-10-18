@@ -144,7 +144,9 @@
 	var/bonus_accuracy = 0 //bonus accuracy that cannot be affected by range drop off.
 	///this is basically do we ignore projectile effects?
 	var/dirty = NONE
-
+	///projectile crit reduce chance since more dmg increases the crit chance it can get absurdly high, 0 for nothing.
+	var/reduce_crit_chance = 0
+	
 /obj/projectile/proc/handle_drop()
 	return
 

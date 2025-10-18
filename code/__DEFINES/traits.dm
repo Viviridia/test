@@ -326,6 +326,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define DEVOTION_TRAIT "devotion_trait"
 
 #define TRAIT_WEBWALK 					"Webwalker"
+#define TRAIT_BRUSHWALK					"Brushwalker"
 #define TRAIT_DEADNOSE 					"Dead Nose"
 #define TRAIT_STINKY					"Natural Stench"
 #define TRAIT_ZJUMP 					"High Jumping"

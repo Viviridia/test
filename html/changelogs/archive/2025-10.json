@@ -627,5 +627,63 @@
                 "balance": "Tritons are ugly now"
             }
         ]
+    },
+    "2025-10-16": {
+        "wgtjunior743": [
+            {
+                "admin": "New tool to delay/accelerate round end or round end vote."
+            },
+            {
+                "bugfix": "Migrant Antags now work"
+            },
+            {
+                "bugfix": "Migrant adventurer,pilgrim,mercenary,bandit and ratcher now work."
+            }
+        ],
+        "snowyseshi": [
+            {
+                "balance": "Templar stat nerfs"
+            },
+            {
+                "balance": " Templars  now only have T2 miracles"
+            },
+            {
+                "balance": " Abrogation now a T2 Necran miracle\\n<!-- Both :cl:'s are required for the changelog to work! You can put your name to the right of the first :cl: if you want to overwrite your GitHub username as author ingame. -->\\n<!-- You can use multiple of the same prefix (they're only used for the icon ingame) and delete the unneeded ones. Despite some of the tags, changelogs should generally represent how a player might be affected by the changes rather than a summary of the PR's contents. -->\\n## Pre-Merge Checklist\\n<!-- Don't bother filling these in while creating your Pull Request, just click the checkboxes after the Pull Request is opened and you are redirected to the page. -->\\n- [ ] You tested this on a local server.\\n- [ ] This code did not runtime during testing.\\n- [ ] You documented all of your changes.\\n<!-- Neither the compiler nor workflow checks are perfect at detecting runtimes and errors. It is important to test your code/feature/fix locally. -->"
+            },
+            {
+                "rscadd": "Added vampiric enchantment to jaded fang"
+            }
+        ],
+        "throwawayuseless": [
+            {
+                "rscadd": "More insanity messages. Lose your marbles with style."
+            }
+        ]
+    },
+    "2025-10-17": {
+        "CheffieGithub": [
+            {
+                "admin": "Fixed buildmode"
+            }
+        ],
+        "wgtjunior743": [
+            {
+                "admin": "New VV Verb for admins to change ppl tile."
+            },
+            {
+                "admin": "You can now add the trait \\\"Recognized\\\" and \\\"Recruited\\\" at the modify trait verb."
+            }
+        ],
+        "AnDigitalGondola": [
+            {
+                "rscadd": "Added a trait called \\\"Brushwalker,\\\" which lets you freely pass meagre bushes and bog bushes."
+            },
+            {
+                "rscdel": "Removed the \\\"Webwalker\\\" trait from briar's grn. blessing and reference to it from largely-unused tangler mob."
+            },
+            {
+                "balance": "Gave the \\\"Brushwalker\\\" trait to briar's grn. blessings, bandit knave poachers, and forest ruffians."
+            }
+        ]
     }
 }

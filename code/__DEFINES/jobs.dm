@@ -12,6 +12,7 @@
 #define JOB_UNAVAILABLE_LASTCLASS 11
 #define JOB_UNAVAILABLE_ACCOUNTAGE 12
 #define JOB_UNAVAILABLE_JOB_COOLDOWN 13
+#define JOB_UNAVAILABLE_RACE_BANNED 14
 
 /* Job datum job_flags */
 /// Whether the mob is announced on arrival.

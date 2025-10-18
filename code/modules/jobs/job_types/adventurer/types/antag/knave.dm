@@ -63,3 +63,4 @@
 			H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 			ADD_TRAIT(H, TRAIT_FORAGER, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_BRUSHWALK, TRAIT_GENERIC)

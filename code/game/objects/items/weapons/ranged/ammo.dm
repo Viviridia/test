@@ -475,6 +475,8 @@
 	armor_penetration = BULLET_PENETRATION
 	speed = 0.3
 	accuracy = 50 //Lower accuracy than an arrow.
+	reduce_crit_chance = 5 //Reduces crit chance
+	dismemberment = 0 //Can't dismember
 
 /obj/projectile/bullet/fragment
 	name = "smaller lead ball"

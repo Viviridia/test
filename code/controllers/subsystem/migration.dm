@@ -369,7 +369,7 @@ SUBSYSTEM_DEF(migrants)
 	if(!player || !player.prefs)
 		return FALSE
 	var/datum/migrant_role/role = MIGRANT_ROLE(role_type)
-	if(!role || is_migrant_banned(player.ckey, role.name))
+	if(!role || is_migrant_banned(player.ckey, role.name) || is_race_banned(player.ckey, player.prefs.pref_species.id))
 		return FALSE
 
 	var/datum/job/migrant_job = SSjob.GetJobType(role.migrant_job)

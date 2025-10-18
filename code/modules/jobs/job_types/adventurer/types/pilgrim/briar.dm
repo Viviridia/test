@@ -158,9 +158,9 @@
 /obj/item/dendor_blessing/growing/give_blessing(mob/living/carbon/human/user)
 	playsound(get_turf(user), 'sound/vo/smokedrag.ogg', 100, TRUE)
 	playsound(get_turf(user), 'sound/misc/wind.ogg', 100, TRUE, -1)
-	to_chat(user, span_good("Plants grow rampant with your every step... things that constrain no longer impede you."))
+	to_chat(user, span_good("Plants grow rampant as the brush twists to ease your every step..."))
 	user.emote("smile")
-	ADD_TRAIT(user, TRAIT_WEBWALK, TRAIT_GENERIC)
+	ADD_TRAIT(user, TRAIT_BRUSHWALK, TRAIT_GENERIC)
 	user.add_spell(/datum/action/cooldown/spell/undirected/touch/entangler, source = user.cleric)
 	user.apply_status_effect(/datum/status_effect/buff/calm)
 
