@@ -153,6 +153,11 @@ GLOBAL_LIST_INIT(natural_precursor_registry, list())
 		/obj/item/reagent_containers/food/snacks/produce/fruit/lime,
 		/obj/item/reagent_containers/food/snacks/produce/fruit/tangerine,
 		/obj/item/reagent_containers/food/snacks/produce/fruit/plum,
+		/obj/item/reagent_containers/food/snacks/produce/fruit/mango,
+		/obj/item/reagent_containers/food/snacks/produce/fruit/mangosteen,
+		/obj/item/reagent_containers/food/snacks/produce/fruit/dragonfruit,
+		/obj/item/reagent_containers/food/snacks/produce/fruit/avocado,
+		/obj/item/reagent_containers/food/snacks/produce/fruit/pineapple,
 	)
 
 /datum/natural_precursor/grain
