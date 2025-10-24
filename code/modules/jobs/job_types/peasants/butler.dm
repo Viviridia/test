@@ -51,6 +51,7 @@
 	H.change_stat(STATKEY_PER, 1)
 	H.change_stat(STATKEY_END, 1)
 	ADD_TRAIT(H, TRAIT_KNOWKEEPPLANS, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ROYALSERVANT, TRAIT_GENERIC)
 	backpack_contents = list(/obj/item/recipe_book/cooking = 1)
 
 	if(H.gender == MALE)

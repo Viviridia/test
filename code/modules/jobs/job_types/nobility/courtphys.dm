@@ -38,6 +38,7 @@
 	beltl = /obj/item/storage/keyring/physician
 	beltr = /obj/item/weapon/mace/courtphysician
 	armor = /obj/item/clothing/shirt/robe/courtphysician
+	ring = /obj/item/clothing/ring/feldsher_ring
 	if(H.gender == FEMALE)
 		pants = /obj/item/clothing/pants/skirt/colored/random
 	else
