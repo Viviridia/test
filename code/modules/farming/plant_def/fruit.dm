@@ -14,7 +14,7 @@
 	nitrogen_production = 0
 	phosphorus_production = 35
 	potassium_production = 0
-	seed_identity = "mango seed"
+	seed_identity = "mangga seed"
 	see_through = TRUE
 
 /datum/plant_def/mango/set_genetic_tendencies(datum/plant_genetics/base_genetics)
@@ -85,7 +85,7 @@
 	nitrogen_production = 25
 	phosphorus_production = 0
 	potassium_production = 0
-	seed_identity = "pineapple seed"
+	seed_identity = "ananas seed"
 
 /datum/plant_def/pineapple/set_genetic_tendencies(datum/plant_genetics/base_genetics)
 	base_genetics.water_efficiency = TRAIT_GRADE_GOOD
@@ -108,7 +108,7 @@
 	nitrogen_production = 20
 	phosphorus_production = 0
 	potassium_production = 0
-	seed_identity = "dragonfruit seed"
+	seed_identity = "piyata seed"
 	can_grow_underground = TRUE
 
 /datum/plant_def/dragonfruit/set_genetic_tendencies(datum/plant_genetics/base_genetics)
