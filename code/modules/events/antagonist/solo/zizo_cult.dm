@@ -1,6 +1,7 @@
 /datum/round_event_control/antagonist/solo/zizo_cult
 	name = "Zizo Cult"
 	tags = list(
+		TAG_ZIZO,
 		TAG_COMBAT,
 		TAG_VILLIAN,
 	)
@@ -28,6 +29,9 @@
 		"Merchant",
 		"Forest Warden",
 		"Inquisitor",
+		"Absolver",
+		"Confessor",
+		"Orthodoxist",
 		"Adept",
 		"Royal Knight",
 		"Templar",

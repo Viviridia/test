@@ -1,6 +1,7 @@
 /datum/round_event_control/antagonist/solo/rebel
 	name = "Rebels"
 	tags = list(
+		TAG_MATTHIOS,
 		TAG_COMBAT,
 		TAG_VILLIAN,
 	)
@@ -30,5 +31,10 @@
 		"Inquisitor",
 		"Adept",
 	)
+
+/datum/round_event_control/antagonist/solo/rebel/valid_for_map()
+	if(SSmapping.config.map_name != "Voyage")
+		return TRUE
+	return FALSE
 
 /datum/round_event/antagonist/solo/rebel

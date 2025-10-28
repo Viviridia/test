@@ -1,6 +1,8 @@
 /datum/round_event_control/antagonist/solo/werewolf
 	name = "Verevolfs"
 	tags = list(
+		TAG_DENDOR,
+		TAG_GRAGGAR,
 		TAG_COMBAT,
 		TAG_HAUNTED,
 		TAG_VILLIAN,
@@ -32,6 +34,9 @@
 		"Merchant",
 		"Forest Warden",
 		"Inquisitor",
+		"Absolver",
+		"Confessor",
+		"Orthodoxist",
 		"Adept",
 		"Royal Knight",
 		"Templar",

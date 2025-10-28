@@ -57,6 +57,17 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	if(GLOB.keep_doors.len > 0)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(know_keep_door_password), H), 7 SECONDS)
 
+/datum/outfit/lord/map_override(mob/living/carbon/human/H)
+	if(SSmapping.config.map_name != "Voyage")
+		return
+	head = /obj/item/clothing/head/helmet/leather/tricorn
+	cloak = /obj/item/clothing/cloak/half
+	l_hand = null
+	armor = /obj/item/clothing/armor/leather/jacket/silk_coat
+	shirt = /obj/item/clothing/shirt/undershirt/puritan
+	wrists = null
+	shoes = /obj/item/clothing/shoes/boots
+
 /datum/outfit/lord/pre_equip(mob/living/carbon/human/H)
 	..()
 	head = /obj/item/clothing/head/crown/serpcrown

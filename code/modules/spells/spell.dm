@@ -217,7 +217,7 @@
 			owner.balloon_alert(owner, "I cannot uphold the channeling!")
 			cancel_casting()
 			return PROCESS_KILL
-		owner.client.mouse_override_icon = 'icons/effects/mousemice/charge/spell_charged.dmi'
+		owner.client?.mouse_override_icon = 'icons/effects/mousemice/charge/spell_charged.dmi'
 		owner.update_mouse_pointer()
 		return PROCESS_KILL
 
@@ -594,6 +594,12 @@
 				L.cursed_freak_out()
 			return sig_return | SPELL_CANCEL_CAST
 
+		if((spell_type == SPELL_MIRACLE) && HAS_TRAIT(cast_on, TRAIT_SILVER_BLESSED) && !(spell_flags & SPELL_PSYDON))
+			cast_on.visible_message(span_info("[cast_on] stirs for a moment, the miracle dissipates."), span_notice("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
+			playsound(cast_on, 'sound/magic/PSY.ogg', 100, FALSE, -1)
+			owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)
+			return sig_return | SPELL_CANCEL_CAST
+
 	if(charge_required && !click_to_activate)
 		// Otherwise we use a simple do_after
 		var/do_after_flags = IGNORE_HELD_ITEM | IGNORE_USER_LOC_CHANGE | IGNORE_USER_DIR_CHANGE
@@ -905,6 +911,14 @@
 
 			return TRUE
 
+		if(SPELL_PSYDONIC_MIRACLE)
+			if(!caster.has_bloodpool_cost(used_cost))
+				if(feedback)
+					owner.balloon_alert(owner, "Need more grace to cast!")
+				return FALSE
+
+			return TRUE
+
 /**
  * Charge the owner with the cost of the spell.
  *
@@ -958,6 +972,9 @@
 			var/mob/living/caster = owner
 			caster.adjust_bloodpool(-used_cost)
 
+		if(SPELL_PSYDONIC_MIRACLE)
+			var/mob/living/caster = owner
+			caster.adjust_bloodpool(-used_cost)
 
 	return used_cost
 
@@ -1019,8 +1036,8 @@
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(signal_cancel), TRUE)
 
 	// Cancel the next click with no timeout
-	source.click_intercept_time = INFINITY
-	source.mouse_override_icon = 'icons/effects/mousemice/charge/spell_charging.dmi'
+	source?.click_intercept_time = INFINITY
+	source?.mouse_override_icon = 'icons/effects/mousemice/charge/spell_charging.dmi'
 	owner.update_mouse_pointer()
 
 	charge_started_at = world.time

@@ -886,5 +886,20 @@
                 "balance": "Most surgery steps can now be performed by those with average in medicine, the difficulty is still the same"
             }
         ]
+    },
+    "2025-10-27": {
+        "wgtjunior743": [
+            {
+                "bugfix": "Wanted poster works for roundstart bandit and others"
+            },
+            {
+                "bugfix": "Merchant drinks in the goldface not appearing"
+            }
+        ],
+        "snowyseshi": [
+            {
+                "rscadd": "Added new zizo miracle: snuff lights"
+            }
+        ]
     }
 }

@@ -1,6 +1,7 @@
 /datum/round_event_control/antagonist/solo/aspirant
 	name = "Aspirant"
 	tags = list(
+		TAG_ZIZO,
 		TAG_VILLIAN,
 	)
 	antag_datum = /datum/antagonist/aspirant
@@ -36,6 +37,11 @@
 	weight = 8
 
 	typepath = /datum/round_event/antagonist/solo/aspirant
+
+/datum/round_event_control/antagonist/solo/aspirant/valid_for_map()
+	if(SSmapping.config.map_name != "Voyage")
+		return TRUE
+	return FALSE
 
 /datum/round_event/antagonist/solo/aspirant
 

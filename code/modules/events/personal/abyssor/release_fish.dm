@@ -8,6 +8,7 @@
 	min_players = 15
 
 	tags = list(
+		TAG_ABYSSOR,
 		TAG_WATER,
 		TAG_NATURE,
 	)

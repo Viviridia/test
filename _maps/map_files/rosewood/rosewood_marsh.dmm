@@ -1610,15 +1610,15 @@
 /area/rogue/outdoors/bog)
 "jh" = (
 /obj/structure/table/wood/crafted,
-/obj/item/fishing/bait/deluxe{
+/obj/item/fishing/lure/deluxe{
 	pixel_x = -7;
 	pixel_y = 0
 	},
-/obj/item/fishing/bait/deluxe{
+/obj/item/fishing/lure/deluxe{
 	pixel_x = 7;
 	pixel_y = 9
 	},
-/obj/item/fishing/bait/deluxe{
+/obj/item/fishing/lure/deluxe{
 	pixel_x = -4;
 	pixel_y = 14
 	},

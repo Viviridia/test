@@ -4,6 +4,7 @@
 	if(H.stat == DEAD) return
 	if(H.advsetup) return
 	if(H.mind?.has_antag_datum(/datum/antagonist/zombie)) return
+	if(HAS_TRAIT(H, TRAIT_SILVER_BLESSED)) return
 
 	// Werewolf transforms at night AND under the sky
 	if(!transformed && !transforming)

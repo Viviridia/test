@@ -398,7 +398,7 @@
 	var/raisin = stripped_input("State a short reason for this change", "Game Master", "", null)
 	if(!amt2change && !raisin)
 		return
-	M.adjust_triumphs(amt2change, FALSE)
+	M.adjust_triumphs(amt2change, FALSE, override_bonus = TRUE)
 	to_chat(M.client, "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">Your Triumphs has been adjusted by [amt2change] by [admin] for reason: [raisin]</span></span>")
 
 /datum/admins/proc/adjustpq(mob/living/M in GLOB.mob_list)
@@ -1128,7 +1128,7 @@
 	var/reason = input(user, "Choose a reason", "Triumph Giver") as text|null
 
 	for(var/client/client as anything in GLOB.clients)
-		client.mob.adjust_triumphs(amount, reason = reason)
+		client.mob.adjust_triumphs(amount, reason = reason, override_bonus = TRUE)
 
 /datum/admins/proc/change_skill_exp_modifier()
 	set name = "Change Skill Experience Gain"

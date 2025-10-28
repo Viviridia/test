@@ -41,6 +41,10 @@
 			continue
 		if(CTAG_WRETCH in CHECKS.category_tags)
 			continue
+		if(CTAG_INQUISITION in CHECKS.category_tags)
+			continue
+		if(CTAG_PURITAN in CHECKS.category_tags)
+			continue
 		possible_classes += CHECKS
 
 	var/list/class_titles = list()

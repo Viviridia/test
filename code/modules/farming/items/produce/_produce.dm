@@ -574,6 +574,37 @@
 	throw_speed = 1
 	throw_range = 3
 
+/obj/item/reagent_containers/food/snacks/produce/fyritius/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(istype(I, /obj/item/inqarticles/indexer))
+		var/obj/item/inqarticles/indexer/IND = I
+		var/success
+		if(HAS_TRAIT(user, TRAIT_INQUISITION))
+			if(IND.cursedblood)
+				if(alert(user, "DRENCH THE FYRITIUS?", "CURSED BLOOD", "YES", "NO") != "NO")
+					success = TRUE
+					IND.fullreset(user)
+				else
+					return
+				if(success)
+					changefood(/obj/item/reagent_containers/food/snacks/produce/fyritius/bloodied, user)
+
+/obj/item/reagent_containers/food/snacks/produce/fyritius/bloodied
+	name = "bloodied fyritius flower"
+	desc = "A once delicate orange flower, now soaked with gruesome accursed blood that slowly burns it away."
+	icon_state = "fyritius_blood"
+	filling_color = "#ff3300"
+	tastes = list("tastes like a burning coal and fire and blood" = 1)
+	bitesize = 1
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/toxin/fyritiusnectar = 5)
+	rotprocess = 10 MINUTES
+
+/obj/item/reagent_containers/food/snacks/produce/fyritius/bloodied/become_rotten()
+	visible_message(span_danger("[src] burns into ash!"))
+	new /obj/effect/decal/cleanable/ash(get_turf(src))
+	qdel(src)
+	return TRUE
+
 /* .......... Poppies ........ */
 /obj/item/reagent_containers/food/snacks/produce/poppy
 	name = "poppy"

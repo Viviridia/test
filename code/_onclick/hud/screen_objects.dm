@@ -1647,7 +1647,6 @@
 	. = ..()
 	if(client)
 		holder = client
-	. = ..()
 	holder.screen += src
 
 /atom/movable/screen/rintent_selection/Destroy()
