@@ -5,6 +5,7 @@
 	button_icon_state = "wind_step"
 	cast_range = 0
 	point_cost = 6
+	has_visual_effects = FALSE
 	attunements = list(/datum/attunement/aeromancy, /datum/attunement/aeromancy)
 
 /datum/action/cooldown/spell/essence/wind_step/cast(atom/cast_on)
@@ -12,6 +13,8 @@
 	owner.visible_message(span_notice("[owner] steps upon the wind itself."))
 	var/mob/living/L = owner
 	L.apply_status_effect(/datum/status_effect/buff/wind_walking, 30 SECONDS)
+	var/obj/effect/temp_visual/snakeswarm/V = new /obj/effect/temp_visual/snakeswarm(get_turf(L), L)
+	L.vis_contents += V
 
 /datum/action/cooldown/spell/essence/aerial_dash
 	name = "Aerial Dash"
@@ -19,6 +22,7 @@
 	button_icon_state = "aerial_dash"
 	cast_range = 0
 	point_cost = 5
+	has_visual_effects = FALSE
 	attunements = list(/datum/attunement/aeromancy, /datum/attunement/aeromancy)
 
 /datum/action/cooldown/spell/essence/aerial_dash/cast(atom/cast_on)
@@ -26,6 +30,8 @@
 	owner.visible_message(span_notice("[owner] is propelled by rushing air currents."))
 	var/mob/living/L = owner
 	L.apply_status_effect(/datum/status_effect/buff/aerial_speed, 15 SECONDS)
+	var/obj/effect/temp_visual/snakeswarm/V = new /obj/effect/temp_visual/snakeswarm(get_turf(L), L)
+	L.vis_contents += V
 
 // Chaos + Void Combo Spells
 /datum/action/cooldown/spell/essence/reality_shift
@@ -140,6 +146,7 @@
 	button_icon_state = "momentum_transfer"
 	cast_range = 2
 	point_cost = 6
+	has_visual_effects = FALSE
 	attunements = list(/datum/attunement/light, /datum/attunement/aeromancy)
 
 /datum/action/cooldown/spell/essence/momentum_transfer/cast(atom/cast_on)
@@ -152,6 +159,8 @@
 	if(ismob(target))
 		var/mob/living/M = target
 		M.apply_status_effect(/datum/status_effect/buff/momentum_boost, 30 SECONDS)
+		var/obj/effect/temp_visual/snakeswarm/V = new /obj/effect/temp_visual/snakeswarm(get_turf(M), M)
+		M.vis_contents += V
 
 // Cycle + Life Combo Spells
 /datum/action/cooldown/spell/essence/regeneration_cycle
@@ -169,6 +178,8 @@
 		target = owner
 	owner.visible_message(span_notice("[target] begins a cycle of natural regeneration."))
 	target.apply_status_effect(/datum/status_effect/buff/regeneration_cycle, 300 SECONDS)
+	var/obj/effect/temp_visual/twinsnake_up/V = new /obj/effect/temp_visual/twinsnake_up(get_turf(target), target)
+	target.vis_contents += V
 
 /datum/action/cooldown/spell/essence/growth_acceleration
 	name = "Growth Acceleration"
@@ -187,6 +198,7 @@
 
 	for(var/obj/structure/soil/plant in range(1, target_turf))
 		plant.accellerated_growth = world.time + 600 SECONDS
+		new /obj/effect/temp_visual/bless_swirl(get_turf(plant))
 
 // RACIAL COMBO SPELLS
 

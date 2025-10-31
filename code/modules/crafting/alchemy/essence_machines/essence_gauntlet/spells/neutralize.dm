@@ -17,3 +17,5 @@
 		var/mob/living/L = target
 		L.reagents?.remove_all_type(/datum/reagent/toxin, 5)
 		L.reagents?.remove_all_type(/datum/reagent/poison, 5)
+		var/obj/effect/temp_visual/twinsnake_up/V = new /obj/effect/temp_visual/twinsnake_up(get_turf(L), L)
+		L.vis_contents += V

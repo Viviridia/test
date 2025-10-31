@@ -569,3 +569,50 @@
 /atom/movable/screen/alert/status_effect/debuff/corrupted_by_tainted_lux
 	name = "Corrupted..."
 	desc = span_danger("It filled my veins with light and rot alike... I can feel it crawling under my skin, whispering that I should never have done it...")
+
+/datum/status_effect/debuff/electrified
+	id = "electrified"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/electrified
+	duration = 20 SECONDS
+	status_type = STATUS_EFFECT_UNIQUE
+	var/static/shock_strength = 30
+	var/static/list/conductive_turfs = list(/turf/open/floor/metal, /turf/open/water)
+	var/static/list/conductive_objs = list(/obj/effect/abstract/liquid_turf)
+	var/static/mutable_appearance/electric = mutable_appearance('icons/effects/effects.dmi', "electricity")
+
+/datum/status_effect/debuff/electrified/on_apply()
+	. = ..()
+	to_chat(owner, span_warning("Your body crackles with electricity!"))
+	if(isliving(owner))
+		var/mob/living/L = owner
+		RegisterSignal(L, COMSIG_MOVABLE_MOVED, PROC_REF(check_conductive_surface))
+		L.add_overlay(electric)
+
+/datum/status_effect/debuff/electrified/on_remove()
+	. = ..()
+	if(isliving(owner))
+		var/mob/living/L = owner
+		UnregisterSignal(L, COMSIG_MOVABLE_MOVED)
+		L.cut_overlay(electric)
+
+/datum/status_effect/debuff/electrified/proc/check_conductive_surface()
+	SIGNAL_HANDLER
+	var/mob/living/L = owner
+	if(!L)
+		return
+
+	var/turf/T = get_turf(L)
+	if(is_type_in_list(T, conductive_turfs))
+		L.visible_message(span_warning("[L] gets shocked!!"), span_danger("Electricity courses through your body!"))
+		(L.electrocute_act(shock_strength, src))
+		return
+
+	for(var/obj/effect/abstract/liquid_turf/liquid in T)
+		L.visible_message(span_warning("[L] steps into a puddle and gets shocked!"), span_danger("You are shocked by the wet ground!"))
+		(L.electrocute_act(shock_strength, src))
+		return
+
+/atom/movable/screen/alert/status_effect/debuff/electrified
+	name = "Electrified"
+	desc = "Your body is charged with unstable electricity. Metal and water are dangerous!"
+	icon_state = "shock"

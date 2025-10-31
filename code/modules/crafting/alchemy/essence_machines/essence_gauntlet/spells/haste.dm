@@ -5,6 +5,7 @@
 	//sound = 'sound/magic/whiff.ogg'
 	cast_range = 0
 	point_cost = 4
+	has_visual_effects = FALSE
 	attunements = list(/datum/attunement/aeromancy)
 
 /datum/action/cooldown/spell/essence/haste/cast(atom/cast_on)
@@ -14,3 +15,5 @@
 
 	var/mob/living/L = owner
 	L.apply_status_effect(/datum/status_effect/buff/haste, 10 SECONDS)
+	var/obj/effect/temp_visual/snakeswarm/V = new /obj/effect/temp_visual/snakeswarm(get_turf(L), L)
+	L.vis_contents += V
