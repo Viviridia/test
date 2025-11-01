@@ -117,6 +117,8 @@
 			H.cmode_music = 'sound/music/cmode/adventurer/CombatOutlander2.ogg'
 			H.adjust_skillrank(/datum/skill/combat/axesmaces, 4, TRUE)
 		if(/datum/patron/divine/abyssor)
+			head = /obj/item/clothing/head/helmet/heavy/necked/abyssor
+			armor = /obj/item/clothing/armor/brigandine/abyssor
 			wrists = /obj/item/clothing/neck/psycross/silver/abyssor
 			cloak = /obj/item/clothing/cloak/stabard/templar/abyssor
 			H.cmode_music = 'sound/music/cmode/adventurer/CombatMonk.ogg'

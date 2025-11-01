@@ -37,7 +37,7 @@
 		return FALSE
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
-		var/obj/item/clothing/checked_armor = human_owner.checkcritarmor(zone_precise, bclass)
+		var/obj/item/clothing/checked_armor = human_owner.check_crit_armor(zone_precise, bclass)
 		if(checked_armor)
 			var/int_percent = round(((checked_armor.get_integrity() / checked_armor.max_integrity) * 100), 1)
 			if(int_percent > 30 && !HAS_TRAIT(human_owner, TRAIT_CRITICAL_WEAKNESS) && !HAS_TRAIT(human_owner, TRAIT_EASYDISMEMBER))

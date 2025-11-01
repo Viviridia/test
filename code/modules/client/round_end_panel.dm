@@ -429,7 +429,7 @@
 			data += "<div style='display: table; width: 100%;'>"
 			data += "<div style='display: table-row;'>"
 
-			var/stats_per_column = CEILING(length(SSgamemode.chosen_chronicle_stats)/4, 1)
+			var/stats_per_column = CEILING(length(SSgamemode.chosen_chronicle_stats) / 4, 1)
 			var/current_stat = 1
 
 			for(var/col in 1 to 4)

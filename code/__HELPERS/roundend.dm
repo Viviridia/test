@@ -412,7 +412,7 @@
 		var/recipients_given = 0
 
 		for(var/datum/mind/selected_mind as anything in shuffled_minds)
-			if(recipients_given >= 4)
+			if(recipients_given >= MAX_CHRONICLE_STATS)
 				break
 
 			var/list/titles = notable_minds[selected_mind]

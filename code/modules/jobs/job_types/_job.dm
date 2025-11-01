@@ -84,6 +84,8 @@
 	var/list/allowed_sexes = list(MALE, FEMALE)
 	/// Species allowed to be this job
 	var/list/allowed_races = RACES_PLAYER_ALL
+	/// Species blacklisted from this job
+	var/list/blacklisted_species = list()
 	/// Ages allowed to be this job
 	var/list/allowed_ages = ALL_AGES_LIST
 
@@ -351,7 +353,7 @@
 		spawned.hugboxify_for_class_selection()
 
 	if(job_flags & JOB_SHOW_IN_CREDITS)
-		SScrediticons.processing += spawned
+		START_PROCESSING(SScrediticons, player_client)
 
 /datum/job/proc/adjust_patron(mob/living/carbon/human/spawned)
 	if(!length(allowed_patrons))

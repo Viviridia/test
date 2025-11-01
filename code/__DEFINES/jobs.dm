@@ -28,6 +28,7 @@
 
 #define FACTION_NONE		"None"
 #define FACTION_NEUTRAL		"Neutral"
+#define FACTION_HOSTILE		"Hostile"
 #define FACTION_TOWN		"Town"
 #define FACTION_FOREIGNERS  "Foreigners"
 #define FACTION_MIGRANTS  	"Migrants"

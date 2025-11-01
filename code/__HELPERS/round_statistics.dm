@@ -484,6 +484,9 @@ GLOBAL_LIST_INIT(featured_stats, list(
 	),
 ))
 
+/// Maximum number of chosen chronicle stats
+#define MAX_CHRONICLE_STATS 8
+
 // Chronicle statistics
 #define CHRONICLE_STATS_PSYDON_FAVOURITE "psydon_favourite"
 #define CHRONICLE_STATS_RANDOM_PASSERBY "random_passerby"
@@ -492,13 +495,21 @@ GLOBAL_LIST_INIT(featured_stats, list(
 #define CHRONICLE_STATS_STRONGEST_PERSON "strongest_person"
 #define CHRONICLE_STATS_WEAKEST_PERSON "weakest_person"
 #define CHRONICLE_STATS_SMARTEST_PERSON "smartest_person"
+#define CHRONICLE_STATS_DUMBEST_PERSON "dumbest_person"
 #define CHRONICLE_STATS_RICHEST_PERSON "richest_person"
 #define CHRONICLE_STATS_POOREST_PERSON "poorest_person"
-#define CHRONICLE_STATS_LUCKIEST_PERSON "luckiest_person"
 #define CHRONICLE_STATS_FASTEST_PERSON "fastest_person"
-#define CHRONICLE_STATS_DUMBEST_PERSON "dumbest_person"
 #define CHRONICLE_STATS_SLOWEST_PERSON "slowest_person"
+#define CHRONICLE_STATS_LUCKIEST_PERSON "luckiest_person"
 #define CHRONICLE_STATS_UNLUCKIEST_PERSON "unluckiest_person"
+#define CHRONICLE_STATS_MOST_PERCEPTIVE_PERSON "perceptive_person"
+#define CHRONICLE_STATS_LEAST_PERCEPTIVE_PERSON "unperceptice_person"
+#define CHRONICLE_STATS_MOST_RESILIENT_PERSON "most_resilient_person"
+#define CHRONICLE_STATS_LEAST_RESILIENT_PERSON "least_resilient_person"
+#define CHRONICLE_STATS_MOST_ENDURANT_PERSON "most_endurant_person"
+#define CHRONICLE_STATS_LEAST_ENDURANT_PERSON "least_endurant_person"
+#define CHRONICLE_STATS_MOST_BEAUTIFUL_PERSON "most_beautiful_person"
+#define CHRONICLE_STATS_UGLIEST_PERSON "ugliest_person"
 
 GLOBAL_LIST_EMPTY(chronicle_stats)
 

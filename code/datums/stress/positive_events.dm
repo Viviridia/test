@@ -234,7 +234,7 @@
 	timer = 30 MINUTES
 
 /datum/stress_event/graggar_culling_finished
-	stress_change = -1
+	stress_change = -2
 	desc = span_green("I have prevailed over my rival! Graggar favours me now!")
 	timer = INFINITY
 

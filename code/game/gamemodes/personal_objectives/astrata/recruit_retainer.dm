@@ -3,7 +3,7 @@
 	category = "Astrata's Chosen"
 	triumph_count = 2
 	immediate_effects = list("Gained an ability to recruit retainers")
-	rewards = list("2 Triumphs", "Astrata grows stronger")
+	rewards = list("2 Triumphs", "Astrata grows stronger", "Astrata blesses you (+1 Fortune)")
 	var/retainers_recruited = 0
 
 /datum/objective/personal/retainer/on_creation()
@@ -28,6 +28,10 @@
 	. = ..()
 	to_chat(owner.current, span_greentext("You have recruited a retainer and completed Astrata's objective!"))
 	adjust_storyteller_influence(ASTRATA, 20)
+
+/datum/objective/personal/retainer/reward_owner()
+	. = ..()
+	owner.current.adjust_stat_modifier("astrata_blessing", STATKEY_LCK, 1)
 
 /datum/objective/personal/retainer/update_explanation_text()
 	explanation_text = "Recruit at least one retainer to serve you and to demonstrate your ability to lead to Astrata."
