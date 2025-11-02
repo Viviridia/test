@@ -12,7 +12,7 @@
 	owner.visible_message(span_notice("[owner] steps onto solidified air."))
 	var/mob/living/L = owner
 	L.apply_status_effect(/datum/status_effect/buff/air_walking, 15 SECONDS)
-	var/obj/effect/temp_visual/snakeswarm/V = new /obj/effect/temp_visual/snakeswarm(get_turf(L), L)
+	var/obj/effect/temp_visual/snake/swarm/V = new /obj/effect/temp_visual/snake/swarm(L)
 	L.vis_contents += V
 
 /atom/movable/screen/alert/status_effect/air_walking

@@ -39,4 +39,3 @@
 		var/mob/living/L = target
 		L.electrocute_act(1, src)
 		L.apply_status_effect(/datum/status_effect/debuff/electrified)
-

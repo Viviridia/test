@@ -21,7 +21,7 @@
 		return cost_override
 	return spell_cost
 
-/obj/effect/temp_visual/snake_base
+/obj/effect/temp_visual/snake
 	icon = 'icons/effects/effects.dmi'
 	vis_flags = NONE
 	plane = GAME_PLANE_UPPER
@@ -30,28 +30,17 @@
 	duration = 1.5 SECONDS
 	var/datum/weakref/mob
 
-/obj/effect/temp_visual/snake_base/Initialize(mapload, mob/target_mob)
+/obj/effect/temp_visual/snake/Initialize(mapload, mob/living/target_mob)
 	. = ..()
+	if(!target_mob || !istype(target_mob))
+		return INITIALIZE_HINT_QDEL
 	mob = WEAKREF(target_mob)
 	overlays += emissive_appearance(icon, icon_state, alpha = src.alpha)
-	if(mob)
-		var/mob/holder = mob.resolve()
-		if(holder)
-			holder.vis_contents += src
-			loc = null
+	if(target_mob)
+		target_mob.vis_contents += src
 
-/obj/effect/temp_visual/snake_base/Destroy(force)
-	if(mob)
-		var/mob/holder = mob.resolve()
-		if(holder)
-			holder.vis_contents -= src
-		mob = null
-	return ..()
-
-/obj/effect/temp_visual/twinsnake_up
-	parent_type = /obj/effect/temp_visual/snake_base
+/obj/effect/temp_visual/snake/twin_up
 	icon_state = "twinsnake"
 
-/obj/effect/temp_visual/snakeswarm
-	parent_type = /obj/effect/temp_visual/snake_base
+/obj/effect/temp_visual/snake/swarm
 	icon_state = "snakeswarm"

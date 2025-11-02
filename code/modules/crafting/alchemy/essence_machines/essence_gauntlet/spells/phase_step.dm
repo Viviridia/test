@@ -12,7 +12,7 @@
 	owner.visible_message(span_notice("[owner] becomes translucent momentarily."))
 	var/mob/living/L = owner
 	L.apply_status_effect(/datum/status_effect/buff/phase_walking, 5 SECONDS)
-	var/obj/effect/temp_visual/snakeswarm/V = new /obj/effect/temp_visual/snakeswarm(get_turf(L), L)
+	var/obj/effect/temp_visual/snake/swarm/V = new /obj/effect/temp_visual/snake/swarm(L)
 	L.vis_contents += V
 
 /datum/status_effect/buff/phase_walking

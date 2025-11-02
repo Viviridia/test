@@ -15,5 +15,5 @@
 
 	var/mob/living/L = owner
 	L.apply_status_effect(/datum/status_effect/buff/haste, 10 SECONDS)
-	var/obj/effect/temp_visual/snakeswarm/V = new /obj/effect/temp_visual/snakeswarm(get_turf(L), L)
+	var/obj/effect/temp_visual/snake/swarm/V = new /obj/effect/temp_visual/snake/swarm(L)
 	L.vis_contents += V

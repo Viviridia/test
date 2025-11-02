@@ -11,7 +11,7 @@
 	owner.visible_message(span_notice("[owner] harmonizes with the natural cycles."))
 	var/mob/living/L = owner
 	L.apply_status_effect(/datum/status_effect/buff/seasonal_attunement, 600 SECONDS)
-	var/obj/effect/temp_visual/twinsnake_up/V = new /obj/effect/temp_visual/twinsnake_up(get_turf(L), L)
+	var/obj/effect/temp_visual/snake/twin_up/V = new /obj/effect/temp_visual/snake/twin_up(L)
 	L.vis_contents += V
 
 /datum/status_effect/buff/seasonal_attunement

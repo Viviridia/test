@@ -39,6 +39,7 @@
 
 	victim.apply_status_effect(/datum/status_effect/buff/darkvision, 10 MINUTES + duration_increase)
 	return TRUE
+
 /obj/item/melee/touch_attack/darkvision
 	name = "\improper arcyne focus"
 	desc = "Touch a creature to grant them Darkvision for half a dae."

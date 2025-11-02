@@ -121,20 +121,17 @@
 	name = "rosa field"
 	icon_state = "rosa"
 
-/// When a mob crosses over a rosa field
 /obj/structure/flora/field/rosa/Crossed(atom/movable/AM)
 	. = ..()
-	if (!isliving(AM)) return
+	if (!isliving(AM))
+		return
 	var/mob/living/L = AM
 	if (HAS_TRAIT(L, TRAIT_FLOWERFIELD_IMMUNITY))
 		return
 	if (!L.buckled && prob(45))
-	{
-		L.visible_message(span_notice("The rose vines entangle [L]!"))
-		(buckle_mob(L, TRUE, check_loc = FALSE))
-	}
+		L.visible_message(span_danger("The rose vines entangle [L]!"), span_userdanger("Vines entangle me!"))
+		buckle_mob(L, TRUE, check_loc = FALSE)
 	apply_flower_effect(L, /datum/status_effect/debuff/rosa_pacification)
-
 
 // ---------------------- SALVIA FIELD ----------------------------
 /obj/structure/flora/field/salvia
@@ -161,25 +158,20 @@
 
 /obj/structure/flora/field/euphorbia/Crossed(atom/movable/AM)
 	. = ..()
-	if (!isliving(AM)) return
+	if (!isliving(AM))
+		return
 	var/mob/living/L = AM
 	if (HAS_TRAIT(L, TRAIT_FLOWERFIELD_IMMUNITY))
 		return
 	if (!L.buckled && prob(35))
-	{
 		L.visible_message(span_warning("The euphorbia vines entwine [L]!"))
 		if (buckle_mob(L, TRUE, check_loc = FALSE))
-		{
 			if (!HAS_TRAIT(L, TRAIT_NOPAIN))
 				L.emote("agony")
 			L.Stun(2 SECONDS)
-		}
-	}
 	if (!HAS_TRAIT(L, TRAIT_PIERCEIMMUNE))
-	{
 		L.adjustBruteLoss(10)
 		to_chat(L, span_danger("Thorns rip into you as you push through!"))
-	}
 	apply_flower_effect(L, /datum/status_effect/debuff/euphorbia_thorns)
 
 // ---------------------- CALENDULA FIELD ----------------------------

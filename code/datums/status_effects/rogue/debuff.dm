@@ -575,9 +575,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/electrified
 	duration = 20 SECONDS
 	status_type = STATUS_EFFECT_UNIQUE
-	var/static/shock_strength = 30
-	var/static/list/conductive_turfs = list(/turf/open/floor/metal, /turf/open/water)
-	var/static/list/conductive_objs = list(/obj/effect/abstract/liquid_turf)
+	var/shock_strength = 30
 	var/static/mutable_appearance/electric = mutable_appearance('icons/effects/effects.dmi', "electricity")
 
 /datum/status_effect/debuff/electrified/on_apply()
@@ -602,17 +600,16 @@
 		return
 
 	var/turf/T = get_turf(L)
-	if(is_type_in_list(T, conductive_turfs))
-		L.visible_message(span_warning("[L] gets shocked!!"), span_danger("Electricity courses through your body!"))
-		(L.electrocute_act(shock_strength, src))
+	if(!T)
 		return
 
-	for(var/obj/effect/abstract/liquid_turf/liquid in T)
-		L.visible_message(span_warning("[L] steps into a puddle and gets shocked!"), span_danger("You are shocked by the wet ground!"))
-		(L.electrocute_act(shock_strength, src))
-		return
+	for(var/atom/A in list(T) + T.contents)
+		if(A.flags_1 & CONDUCT_1)
+			L.visible_message(span_warning("[L] gets shocked!"), span_danger("Electricity courses through your body!"))
+			L.electrocute_act(shock_strength, src)
+			return
 
 /atom/movable/screen/alert/status_effect/debuff/electrified
 	name = "Electrified"
-	desc = "Your body is charged with unstable electricity. Metal and water are dangerous!"
-	icon_state = "shock"
+	desc = "Your body is charged with unstable electricity!"
+	icon_state = "dazed"

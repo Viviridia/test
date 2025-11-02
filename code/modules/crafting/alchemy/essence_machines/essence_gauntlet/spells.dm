@@ -13,7 +13,7 @@
 	owner.visible_message(span_notice("[owner] steps upon the wind itself."))
 	var/mob/living/L = owner
 	L.apply_status_effect(/datum/status_effect/buff/wind_walking, 30 SECONDS)
-	var/obj/effect/temp_visual/snakeswarm/V = new /obj/effect/temp_visual/snakeswarm(get_turf(L), L)
+	var/obj/effect/temp_visual/snake/swarm/V = new /obj/effect/temp_visual/snake/swarm(L)
 	L.vis_contents += V
 
 /datum/action/cooldown/spell/essence/aerial_dash
@@ -30,7 +30,7 @@
 	owner.visible_message(span_notice("[owner] is propelled by rushing air currents."))
 	var/mob/living/L = owner
 	L.apply_status_effect(/datum/status_effect/buff/aerial_speed, 15 SECONDS)
-	var/obj/effect/temp_visual/snakeswarm/V = new /obj/effect/temp_visual/snakeswarm(get_turf(L), L)
+	var/obj/effect/temp_visual/snake/swarm/V = new /obj/effect/temp_visual/snake/swarm(L)
 	L.vis_contents += V
 
 // Chaos + Void Combo Spells
@@ -159,7 +159,7 @@
 	if(ismob(target))
 		var/mob/living/M = target
 		M.apply_status_effect(/datum/status_effect/buff/momentum_boost, 30 SECONDS)
-		var/obj/effect/temp_visual/snakeswarm/V = new /obj/effect/temp_visual/snakeswarm(get_turf(M), M)
+		var/obj/effect/temp_visual/snake/swarm/V = new /obj/effect/temp_visual/snake/swarm(M)
 		M.vis_contents += V
 
 // Cycle + Life Combo Spells
@@ -178,7 +178,7 @@
 		target = owner
 	owner.visible_message(span_notice("[target] begins a cycle of natural regeneration."))
 	target.apply_status_effect(/datum/status_effect/buff/regeneration_cycle, 300 SECONDS)
-	var/obj/effect/temp_visual/twinsnake_up/V = new /obj/effect/temp_visual/twinsnake_up(get_turf(target), target)
+	var/obj/effect/temp_visual/snake/twin_up/V = new /obj/effect/temp_visual/snake/twin_up(target)
 	target.vis_contents += V
 
 /datum/action/cooldown/spell/essence/growth_acceleration
