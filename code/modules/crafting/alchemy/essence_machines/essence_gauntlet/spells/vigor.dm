@@ -13,8 +13,7 @@
 		target = owner
 	owner.visible_message(span_notice("[target] appears invigorated."))
 	target.apply_status_effect(/datum/status_effect/buff/vigor, 60 SECONDS)
-	var/obj/effect/temp_visual/snake/twin_up/V = new /obj/effect/temp_visual/snake/twin_up(target)
-	target.vis_contents += V
+	new /obj/effect/temp_visual/snake/twin_up(null, target)
 
 /atom/movable/screen/alert/status_effect/vigor
 	name = "Vigor"
